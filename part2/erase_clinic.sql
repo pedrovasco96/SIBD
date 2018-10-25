@@ -1,3 +1,7 @@
+/*
+* ERASES THE CLINIC'S TABLES FROM THE DATABASE
+*/
+
 drop table if exists produced_indicator;
 drop table if exists indicator;
 drop table if exists test_procedure;
