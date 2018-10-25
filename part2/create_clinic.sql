@@ -1,3 +1,6 @@
+/*
+* CREATES THE CLINIC'S TABLES IN THE DATABASE
+*/
 drop table if exists produced_indicator;
 drop table if exists indicator;
 drop table if exists test_procedure;
@@ -188,10 +191,3 @@ create table produced_indicator
     primary key(name,VAT_owner,date_timestamp,num,indicator_name),
     foreign key(name,VAT_owner,date_timestamp,num) references test_procedure(name,VAT_owner,date_timestamp,num),
     foreign key(indicator_name) references indicator(name));
-
-insert into person values (2424, 'Pedro', 'Bobadela', 'Rua Jorge', '2695-048');
-insert into person values (2425, 'João', 'Pontinha', 'Rua Fialho', '2200-238');
-insert into person values (2426, 'Sara', 'Cascais', 'Risotte', '1697-908');
-insert into veterinary values (2424, 'Medicina Interna', 'Licenciado em 2015 pela FMVUL');
-insert into assistant values (2426);
-insert into client values (2425);
