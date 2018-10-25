@@ -1,23 +1,23 @@
-drop table if exists produced_indicator;
-drop table if exists indicator;
-drop table if exists test_procedure;
-drop table if exists performed;
-drop table if exists radiography;
-drop table if exists proceeding;
-drop table if exists prescription;
-drop table if exists medication;
-drop table if exists consult_diagnosis;
-drop table if exists diagnosis_code;
-drop table if exists participation;
-drop table if exists consult;
-drop table if exists animal;
-drop table if exists generalization_species;
-drop table if exists species;
+drop table if exists person;
+drop table if exists phone_number;
 drop table if exists client;
 drop table if exists assistant;
 drop table if exists veterinary;
-drop table if exists phone_number;
-drop table if exists person;
+drop table if exists species;
+drop table if exists generalization_species;
+drop table if exists animal;
+drop table if exists consult;
+drop table if exists participation;
+drop table if exists consult_diagnosis;
+drop table if exists diagnosis_code;
+drop table if exists medication;
+drop table if exists prescription;
+drop table if exists indicator;
+drop table if exists procedure;
+drop table if exists performed;
+drop table if exists radiography;
+drop table if exists test_procedure;
+drop table if exists procedure_indicator;
 
 create table person
    (VAT  int(10),
@@ -129,8 +129,8 @@ create table prescription
     lab  varchar(255),
     regime varchar(255),
     primary key(name,VAT_owner,date_timestamp,code,med_name,dosage,lab),
-    foreign key(VAT_owner,name,date_timestamp, code) references consult_diagnosis(VAT_owner,name,date_timestamp,code),
-    foreign key(med_name,lab,dosage) references medication(name, lab, dosage));
+    foreign key(code,name,VAT_owner,date_timestamp) references consult_diagnosis(VAT_owner,name,date_timestamp,code),
+    foreign key(med_name,lab,dosage) references medication(name, dosage, lab));
 
 create table indicator
    (name  varchar(255),
@@ -139,14 +139,14 @@ create table indicator
     description text,
     primary key(name));
 
-create table proceeding
+create table procedure
    (name  varchar(255),
     num  int(10),
     date_timestamp timestamp,
     VAT_owner  int(10),
     description text,
     primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp) references consult(name,VAT_owner,date_timestamp));
+    foreign key(name,VAT_owner,date_timestamp) references consult(VAT_owner,name,date_timestamp));
 -- check RI
 
 create table performed
@@ -156,7 +156,7 @@ create table performed
     VAT_owner  int(10),
     VAT_assistant int(10),
     primary key(name,VAT_owner,date_timestamp,num,VAT_assistant),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num),
+    foreign key(name,VAT_owner,date_timestamp,num) references procedure(VAT_owner,name,date_timestamp,num),
     foreign key(VAT_assistant) references assistant(VAT));
 
 create table radiography
@@ -166,7 +166,7 @@ create table radiography
     VAT_owner  int(10),
     file text,
     primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num));
+    foreign key(name,VAT_owner,date_timestamp,num) references procedure(VAT_owner,name,date_timestamp,num));
 
 create table test_procedure
    (name  varchar(255),
@@ -175,10 +175,10 @@ create table test_procedure
     VAT_owner  int(10),
     type char(5),
     primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num));
+    foreign key(name,VAT_owner,date_timestamp,num) references procedure(VAT_owner,name,date_timestamp,num));
 -- check RI
 
-create table produced_indicator
+create table procedure_indicator
    (name  varchar(255),
     num  int(10),
     date_timestamp timestamp,
@@ -186,7 +186,7 @@ create table produced_indicator
     indicator_name varchar(255),
     value numeric(10,4),
     primary key(name,VAT_owner,date_timestamp,num,indicator_name),
-    foreign key(name,VAT_owner,date_timestamp,num) references test_procedure(name,VAT_owner,date_timestamp,num),
+    foreign key(name,VAT_owner,date_timestamp,num) references test_procedure(VAT_owner,name,date_timestamp,num),
     foreign key(indicator_name) references indicator(name));
 
 insert into person values (2424, 'Pedro', 'Bobadela', 'Rua Jorge', '2695-048');
