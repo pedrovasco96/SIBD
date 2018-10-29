@@ -27,7 +27,7 @@ insert into person values (842418653, 'Jared Mcfadden', 'Coimbra', 'Praçeta do 
 insert into person values (700074220, 'Solomon Christian', 'Coimbra', 'Praçeta do Vale dos Reis', '9975-858');
 insert into person values (852102198, 'Phelan Kemp', 'Coimbra', 'Rua Vasco', '3008-678');
 insert into person values (160929865, 'Vielka Montgomery', 'Coimbra', 'Rua Vasco', '5258-082');
-insert into person values (593867020, 'Ivana Woodard', 'Coimbra', 'Rua Vasco', '5138-462');
+insert into person values (593867020, 'Ivanka Woodard', 'Coimbra', 'Rua Vasco', '5138-462');
 
 -- (VAT, specialization, bio)
 insert into veterinary values (716066894, 'General', 'BSc. degree FMVUL 2015');
