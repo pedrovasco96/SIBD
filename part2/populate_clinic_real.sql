@@ -3,19 +3,19 @@
 */
 
 -- (VAT, name, adress_city, adress_street, adress_zip)
---veterinary
+-- veterinary
 insert into person values (716066894, 'Pedro Vasco', 'Lisboa', 'Rua Jorge', '2695-048');
 insert into person values (626114400, 'John Smith', 'Lisboa', 'Compaund', '9747-202');
 insert into person values (678580968, 'Jamil Merritt', 'Lisboa', 'Rua da Graça', '1360-965');
 
---assistant
+-- assistant
 insert into person values (490988036, 'Sara Vieira', 'Lisboa', 'Risotte', '1697-908');
 insert into person values (353386064, 'Brenna Pratt', 'Porto', 'Rua da Graça', '2666-901');
 insert into person values (791306026, 'Shakir Silva', 'Porto', 'Rua da Glória', '1602-725');
 insert into person values (523798442, 'Awais Kaiser', 'Porto', 'Avenida da Liberdade', '5850-873');
 insert into person values (183354373, 'Cecilia Holmes', 'Porto', 'Avenida da Liberdade', '9196-721');
 
---client
+-- client
 insert into person values (102556247, 'João Rodrigues', 'Lisboa', 'Rua Fialho', '2200-238');
 insert into person values (100124638, 'Erasmus Cannon', 'Porto', 'Avenida da Liberdade', '2314-477');
 insert into person values (650179091, 'Carlos Brennan', 'Braga', 'Rua 24 de Julho', '5874-773');
