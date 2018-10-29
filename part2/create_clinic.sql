@@ -99,7 +99,7 @@ create table participation
     date_timestamp timestamp,
     VAT_assistant  int(10),
     primary key(name,VAT_owner,date_timestamp,VAT_assistant),
-    foreign key(VAT_owner,name,date_timestamp) references consult(VAT_owner,name,date_timestamp),
+    foreign key(name,VAT_owner,date_timestamp) references consult(name,VAT_owner,date_timestamp),
     foreign key(VAT_assistant) references assistant(VAT));
 
 create table diagnosis_code
