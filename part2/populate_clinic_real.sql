@@ -114,7 +114,7 @@ insert into consult values ('Pizzi', 1025, '2018-10-25 10:34:09', '', 'strabism'
 insert into consult values ('Bruno César', 6501, '2018-10-25 12:34:09', '', 'obesity', '', '', 6501, 7160, 40);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
-insert into participation values ('Jonas', 1025, '2018-10-25 10:34:09', 4909);
+insert into participation values ('Jonas', 1025, '2018-10-25 08:30:00', 4909);
 insert into participation values ('Bruno César', 6501,'2018-10-25 12:34:09', 4909);
 
 -- (name, code)
@@ -122,7 +122,7 @@ insert into diagnosis_code values ('Arrhythmia', 234);
 insert into diagnosis_code values ('Diarrea', 200);
 
 -- (name, code, date_timestamp, VAT_owner)
-insert into consult_diagnosis values ('Jonas', 234, '2018-10-25 10:34:09', 1025);
+insert into consult_diagnosis values ('Jonas', 234, '2018-10-25 08:30:00', 1025);
 insert into consult_diagnosis values ('Bruno César', 200, '2018-10-25 12:34:09', 6501);
 
 -- (name, dosage, lab)
@@ -131,8 +131,8 @@ insert into medication values ('Varfine', 1, 'Bayer');
 insert into medication values ('Halibut', 1, 'Halibut');
 
 -- (name, code, date_timestamp, VAT_owner, med_name, dosage, lab, regime)
-insert into prescription values ('Jonas', 234, '2018-10-25 10:34:09', 1025, 'Aspirina', 2, 'Bayer', 'One time a day');
-insert into prescription values ('Jonas', 234, '2018-10-25 10:34:09', 1025, 'Varfine', 1, 'Bayer', 'Two times a day');
+insert into prescription values ('Jonas', 234, '2018-10-25 08:30:00', 1025, 'Aspirina', 2, 'Bayer', 'One time a day');
+insert into prescription values ('Jonas', 234, '2018-10-25 08:30:00', 1025, 'Varfine', 1, 'Bayer', 'Two times a day');
 insert into prescription values ('Bruno César', 200, '2018-10-25 12:34:09', 6501, 'Halibut', 1, 'Halibut', 'After poop');
 
 -- (name, reference_value, units, description)
@@ -142,22 +142,22 @@ insert into indicator values ('Red cells', 300, 'units', 'Amount of red cells in
 insert into indicator values ('Protease Protein', 10, 'milligrams', 'Infection protein');
 
 -- (name, num, date_timestamp, VAT_owner, description)
-insert into proceeding values ('Jonas', 1, '2018-10-25 10:34:09', 1025, 'Analysis');
-insert into proceeding values ('Jonas', 2, '2018-10-25 10:34:09', 1025, 'Toraxic Radiography');
+insert into proceeding values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Analysis');
+insert into proceeding values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 'Toraxic Radiography');
 insert into proceeding values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 'Analysis');
 
 -- (name, num, date_timestamp, VAT_owner, VAT_assistant)
-insert into performed values ('Jonas', 1, '2018-10-25 10:34:09', 1025, 4909);
-insert into performed values ('Jonas', 2, '2018-10-25 10:34:09', 1025, 4909);
+insert into performed values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 4909);
+insert into performed values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 4909);
 insert into performed values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 4909);
 
 -- (name, num, date_timestamp, VAT_owner, file)
-insert into radiography values ('Jonas', 2, '2018-10-25 10:34:09', 1025, 'No significant patologies detected');
+insert into radiography values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 'No significant patologies detected');
 
 -- (name, num, date_timestamp, VAT_owner, type)
-insert into test_procedure values ('Jonas', 1, '2018-10-25 10:34:09', 1025, 'Blood');
+insert into test_procedure values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Blood');
 insert into test_procedure values ('Bruno César', 1,'2018-10-25 12:34:09', 6501, 'Blood');
 
 -- (name,num,date_timestamp, VAT_owner, indicator_name, value)
-insert into produced_indicator values ('Jonas', 1, '2018-10-25 10:34:09', 1025, 'Diabetes', 250);
+insert into produced_indicator values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Diabetes', 250);
 insert into produced_indicator values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 'Diabetes', 350);
