@@ -107,11 +107,13 @@ insert into animal values ('Pizzi', 1025, 'Labrador', 'black', 'M', 2010, 8);
 insert into animal values ('Esferovite', 1001, 'Labrador', 'white', 'M', 2015, 3);
 insert into animal values ('Bruno César', 6501, 'Bald Eagle', 'white', 'M', 2005, 13);
 insert into animal values ('Amelie', 3408, 'Sphynx', 'white', 'F', 2016, 2);
+insert into animal values ('Nel', 5938, 'Papillon', 'white', 'M', 2015, 3);
 
 -- (name, VAT_owner, date_timestamp, s, o, a, p, VAT_client, VAT_vet, weight)
 insert into consult values ('Jonas', 1025, '2018-10-25 08:30:00', '', 'obesity', '', '', 1025, 7160, 32.4);
 insert into consult values ('Pizzi', 1025, '2018-10-25 10:34:09', '', 'strabism', '', '', 1025, 7160, 24.5);
 insert into consult values ('Bruno César', 6501, '2018-10-25 12:34:09', '', 'obesity', '', '', 6501, 7160, 40);
+insert into consult values ('Nel', 5938, '2017-10-25 12:34:09', '', '', '', '', 5938, 6261, 25);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
 insert into participation values ('Jonas', 1025, '2018-10-25 08:30:00', 4909);
