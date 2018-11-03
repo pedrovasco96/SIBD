@@ -102,12 +102,12 @@ insert into generalization_species values ('Doberman', 'Dog');
 insert into generalization_species values ('German Sheppard', 'Dog');
 
 -- (name, VAT, species_name, colour, gender, birth_year, age)
-insert into animal values ('Jonas', 1025, 'Labrador', 'brown', 'F', 2012, 6);
-insert into animal values ('Pizzi', 1025, 'Labrador', 'black', 'M', 2010, 8);
-insert into animal values ('Esferovite', 1001, 'Labrador', 'white', 'M', 2015, 3);
-insert into animal values ('Bruno César', 6501, 'Bald Eagle', 'white', 'M', 2005, 13);
-insert into animal values ('Amelie', 3408, 'Sphynx', 'white', 'F', 2016, 2);
-insert into animal values ('Nel', 5938, 'Papillon', 'white', 'M', 2015, 3);
+insert into animal values ('Jonas', 1025, 'Labrador', 'brown', 'F', 2012, YEAR(CURDATE())-2012);
+insert into animal values ('Pizzi', 1025, 'Labrador', 'black', 'M', 2010, YEAR(CURDATE())-2010);
+insert into animal values ('Esferovite', 1001, 'Labrador', 'white', 'M', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Bruno César', 6501, 'Bald Eagle', 'white', 'M', 2005, YEAR(CURDATE())-2005);
+insert into animal values ('Amelie', 3408, 'Sphynx', 'white', 'F', 2016, YEAR(CURDATE())-2016);
+insert into animal values ('Nel', 5938, 'Papillon', 'white', 'M', 2015, YEAR(CURDATE())-2015);
 
 -- (name, VAT_owner, date_timestamp, s, o, a, p, VAT_client, VAT_vet, weight)
 insert into consult values ('Jonas', 1025, '2018-10-25 08:30:00', '', 'obesity', '', '', 1025, 7160, 32.4);
