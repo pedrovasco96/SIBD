@@ -25,7 +25,7 @@ insert into person values (2438, 'Jameson Harrison', 'Braga', 'Praça Firmino', 
 insert into person values (8990, 'Elijah Vargas', 'Braga', 'Praçeta do Vale dos Reis', '3634-589');
 insert into person values (8424, 'Jared Mcfadden', 'Coimbra', 'Praçeta do Vale dos Reis', '6995-225');
 insert into person values (7000, 'Solomon Christian', 'Coimbra', 'Praçeta do Vale dos Reis', '9975-858');
-insert into person values (8521, 'Phelan Kemp', 'Coimbra', 'Rua Vasco', '3008-678');
+insert into person values (8521, 'Rossi', 'Vialonga', 'VBlock', '3008-678');
 insert into person values (1609, 'Vielka Montgomery', 'Coimbra', 'Rua Vasco', '5258-082');
 insert into person values (5938, 'Ivana Woodard', 'Coimbra', 'Rua Vasco', '5138-462');
 
@@ -104,62 +104,118 @@ insert into generalization_species values ('German Sheppard', 'Dog');
 -- (name, VAT, species_name, colour, gender, birth_year, age)
 insert into animal values ('Jonas', 1025, 'Labrador', 'brown', 'F', 2012, YEAR(CURDATE())-2012);
 insert into animal values ('Pizzi', 1025, 'Labrador', 'black', 'M', 2010, YEAR(CURDATE())-2010);
-insert into animal values ('Esferovite', 1001, 'Labrador', 'white', 'M', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Deezy', 7000, 'Labrador', 'white', 'M', 2015, YEAR(CURDATE())-2015);
 insert into animal values ('Bruno César', 6501, 'Bald Eagle', 'white', 'M', 2005, YEAR(CURDATE())-2005);
 insert into animal values ('Amelie', 3408, 'Sphynx', 'white', 'F', 2016, YEAR(CURDATE())-2016);
 insert into animal values ('Nel', 5938, 'Papillon', 'white', 'M', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Holly Hood', 5938, 'Papillon', 'white', 'F', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Prodígio', 7000, 'Papillon', 'black', 'M', 2016, YEAR(CURDATE())-2016);
+insert into animal values ('Zizzy', 8521, 'Doberman', 'brown', 'M', 2011, YEAR(CURDATE())-2011);
+insert into animal values ('Slow J', 8990, 'Sphynx', 'white', 'M', 2011, YEAR(CURDATE())-2011);
+insert into animal values ('Sam The Kid', 2438, 'Papillon', 'white', 'M', 2010, YEAR(CURDATE())-2010);
+insert into animal values ('Allen', 2438, 'Shiba Inu', 'black', 'M', 1994, YEAR(CURDATE())-1994);
+insert into animal values ('Valete', 2438, 'Shiba Inu', 'black', 'M', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Bispo', 8424, 'Shiba Inu', 'white', 'M', 2017, YEAR(CURDATE())-2017);
+insert into animal values ('Kappa Jota', 8424, 'Shiba Inu', 'white', 'F', 2013, YEAR(CURDATE())-2013);
+insert into animal values ('Malabá', 1001, 'German Sheppard', 'brown', 'M', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('Regula', 1001, 'German Sheppard', 'white', 'F', 2015, YEAR(CURDATE())-2015);
+insert into animal values ('GSon', 8521, 'Doberman', 'black', 'M', 2009, YEAR(CURDATE())-2009);
+insert into animal values ('Zara', 8521, 'Doberman', 'black', 'M', 2008, YEAR(CURDATE())-2008);
+insert into animal values ('Kroa', 8521, 'Doberman', 'black', 'M', 2014, YEAR(CURDATE())-2014);
 
 -- (name, VAT_owner, date_timestamp, s, o, a, p, VAT_client, VAT_vet, weight)
+-- s:subjetive observation
+-- o:objective observation
+-- a:assessment
+-- p:plan
 insert into consult values ('Jonas', 1025, '2018-10-25 08:30:00', '', 'obesity', '', '', 1025, 7160, 32.4);
 insert into consult values ('Pizzi', 1025, '2018-10-25 10:34:09', '', 'strabism', '', '', 1025, 7160, 24.5);
 insert into consult values ('Bruno César', 6501, '2018-10-25 12:34:09', '', 'obesity', '', '', 6501, 7160, 40);
 insert into consult values ('Nel', 5938, '2017-10-25 12:34:09', '', '', '', '', 5938, 6261, 25);
+insert into consult values ('GSon', 8521, '2017-05-23 12:34:09', 'Cup Problems', '', '', '', 8521, 6261, 25);
+insert into consult values ('Nel', 5938, '2017-10-27 10:34:09', '', 'Alcholism', '', '', 5938, 6261, 24);
+insert into consult values ('Sam The Kid', 2438, '2017-07-11 17:15:00', '', 'Fever', '', '', 2438, 7160, 15);
+insert into consult values ('Allen', 2438, '2017-10-25 12:34:09', '', '', '', '', 5938, 6261, 25);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
 insert into participation values ('Jonas', 1025, '2018-10-25 08:30:00', 4909);
 insert into participation values ('Bruno César', 6501,'2018-10-25 12:34:09', 4909);
+insert into participation values ('GSon', 8521,'2017-05-23 12:34:09', 3533);
+insert into participation values ('Sam The Kid', 2438,'2017-07-11 17:15:00', 7913);
 
 -- (name, code)
 insert into diagnosis_code values ('Arrhythmia', 234);
 insert into diagnosis_code values ('Diarrea', 200);
+insert into diagnosis_code values ('Pneumonia', 201);
+insert into diagnosis_code values ('Lung Cancer', 122);
+insert into diagnosis_code values ('Zika', 32);
+insert into diagnosis_code values ('Leuchemia', 3);
+insert into diagnosis_code values ('Anthrax', 1);
+insert into diagnosis_code values ('Rabies', 2);
 
 -- (name, code, date_timestamp, VAT_owner)
 insert into consult_diagnosis values ('Jonas', 234, '2018-10-25 08:30:00', 1025);
 insert into consult_diagnosis values ('Bruno César', 200, '2018-10-25 12:34:09', 6501);
+insert into consult_diagnosis values ('GSon', 2, '2017-05-23 12:34:09', 8521);
+insert into consult_diagnosis values ('Sam The Kid', 201, '2017-07-11 17:15:00', 2438);
 
 -- (name, dosage, lab)
 insert into medication values ('Aspirina', 2, 'Bayer');
 insert into medication values ('Varfine', 1, 'Bayer');
 insert into medication values ('Halibut', 1, 'Halibut');
+insert into medication values ('Benuron', 2, 'Bene');
+insert into medication values ('Brufen', 1, 'Abbott');
+insert into medication values ('Boostrix', 4, 'Imovax');
 
 -- (name, code, date_timestamp, VAT_owner, med_name, dosage, lab, regime)
 insert into prescription values ('Jonas', 234, '2018-10-25 08:30:00', 1025, 'Aspirina', 2, 'Bayer', 'One time a day');
 insert into prescription values ('Jonas', 234, '2018-10-25 08:30:00', 1025, 'Varfine', 1, 'Bayer', 'Two times a day');
 insert into prescription values ('Bruno César', 200, '2018-10-25 12:34:09', 6501, 'Halibut', 1, 'Halibut', 'After poop');
+insert into prescription values ('GSon', 2, '2017-05-23 12:34:09', 8521, 'Boostrix', 4, 'Imovax', 'One time a day for 4 days');
+insert into prescription values ('Sam The Kid', 201, '2017-07-11 17:15:00', 2438, 'Benuron', 2, 'Bene', 'One in the morning and one at night');
+insert into prescription values ('Sam The Kid', 201, '2017-07-11 17:15:00', 2438, 'Brufen', 1, 'Abbott', 'One in the morning');
 
 -- (name, reference_value, units, description)
 insert into indicator values ('Diabetes', 200, 'milligrams', 'Amount of sugar in blood');
 insert into indicator values ('Collestrol', 180, 'milligrams', 'Amount of collestrol in blood');
 insert into indicator values ('Red cells', 300, 'units', 'Amount of red cells in blood');
 insert into indicator values ('Protease Protein', 10, 'milligrams', 'Infection protein');
+insert into indicator values ('White cells', 120, 'units', 'Amount of white cells in blood');
+insert into indicator values ('Ureia', 20, 'milligrams', 'Amount of ureia in urine');
 
 -- (name, num, date_timestamp, VAT_owner, description)
 insert into proceeding values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Analysis');
 insert into proceeding values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 'Toraxic Radiography');
 insert into proceeding values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 'Analysis');
+insert into proceeding values ('Sam The Kid', 2, '2017-07-11 17:15:00', 2438, 'Toraxic Radiography');
+insert into proceeding values ('Sam The Kid', 1, '2017-07-11 17:15:00', 2438, 'Analysis');
+insert into proceeding values ('GSon', 1, '2017-05-23 12:34:09', 8521, 'Analysis');
+insert into proceeding values ('GSon', 3, '2017-05-23 12:34:09', 8521, 'Analysis');
 
 -- (name, num, date_timestamp, VAT_owner, VAT_assistant)
 insert into performed values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 4909);
 insert into performed values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 4909);
 insert into performed values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 4909);
+insert into performed values ('Sam The Kid', 2, '2017-07-11 17:15:00', 2438, 1833);
+insert into performed values ('Sam The Kid', 1, '2017-07-11 17:15:00', 2438, 1833);
+insert into performed values ('GSon', 1, '2017-05-23 12:34:09', 8521, 1833);
+insert into performed values ('GSon', 3, '2017-05-23 12:34:09', 8521, 1833);
 
 -- (name, num, date_timestamp, VAT_owner, file)
 insert into radiography values ('Jonas', 2, '2018-10-25 08:30:00', 1025, 'No significant patologies detected');
+insert into radiography values ('Sam The Kid', 2, '2017-07-11 17:15:00', 2438, 'Signs of pneumonia. Little circles more evident in the left lung');
 
 -- (name, num, date_timestamp, VAT_owner, type)
 insert into test_procedure values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Blood');
 insert into test_procedure values ('Bruno César', 1,'2018-10-25 12:34:09', 6501, 'Blood');
+insert into test_procedure values ('Sam The Kid', 1, '2017-07-11 17:15:00', 2438, 'Blood');
+insert into test_procedure values ('GSon', 1, '2017-05-23 12:34:09', 8521, 'Blood');
+insert into test_procedure values ('GSon', 3, '2017-05-23 12:34:09', 8521, 'Urine');
 
 -- (name,num,date_timestamp, VAT_owner, indicator_name, value)
 insert into produced_indicator values ('Jonas', 1, '2018-10-25 08:30:00', 1025, 'Diabetes', 250);
 insert into produced_indicator values ('Bruno César', 1, '2018-10-25 12:34:09', 6501, 'Diabetes', 350);
+insert into produced_indicator values ('Sam The Kid', 1, '2017-07-11 17:15:00', 2438, 'White Cells', 160);
+insert into produced_indicator values ('GSon', 1, '2017-05-23 12:34:09', 8521, 'Protease Protein', 30);
+insert into produced_indicator values ('GSon', 1, '2017-05-23 12:34:09', 8521, 'Red Cells', 280);
+insert into produced_indicator values ('GSon', 3, '2017-05-23 12:34:09', 8521, 'Ureia', 25);
