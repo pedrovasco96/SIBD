@@ -128,14 +128,14 @@ insert into animal values ('Kroa', 8521, 'Doberman', 'black', 'M', 2014, YEAR(CU
 -- o:objective observation
 -- a:assessment
 -- p:plan
-insert into consult values ('Jonas', 1025, '2018-10-25 08:30:00', '', 'obesity', '', '', 1025, 7160, 32.4);
-insert into consult values ('Pizzi', 1025, '2018-10-25 10:34:09', '', 'strabism', '', '', 1025, 7160, 24.5);
-insert into consult values ('Bruno César', 6501, '2018-10-25 12:34:09', '', 'obesity', '', '', 6501, 7160, 40);
-insert into consult values ('Nel', 5938, '2017-10-25 12:34:09', '', '', '', '', 5938, 6261, 25);
-insert into consult values ('GSon', 8521, '2017-05-23 12:34:09', 'Cup Problems', '', '', '', 8521, 6261, 25);
-insert into consult values ('Nel', 5938, '2017-10-27 10:34:09', '', 'Alcholism', '', '', 5938, 6261, 24);
+insert into consult values ('Jonas', 1025, '2018-10-25 08:30:00', '', 'Obesity', '', '', 1025, 7160, 32.4);
+insert into consult values ('Pizzi', 1025, '2018-10-25 10:34:09', '', 'Strabism', '', '', 1025, 7160, 24.5);
+insert into consult values ('Bruno César', 6501, '2018-10-25 12:34:09', '', 'Obesity', '', '', 6501, 7160, 40);
+insert into consult values ('Nel', 5938, '2017-10-25 12:34:09', '', 'Obesity', '', '', 5938, 6261, 25);
+insert into consult values ('GSon', 8521, '2017-05-23 12:34:09', 'Cup Problems', 'Alcoholism', '', '', 8521, 6261, 25);
+insert into consult values ('Nel', 5938, '2017-10-27 10:34:09', '', 'Alcoholism', '', '', 5938, 6261, 24);
 insert into consult values ('Sam The Kid', 2438, '2017-07-11 17:15:00', '', 'Fever', '', '', 2438, 7160, 15);
-insert into consult values ('Allen', 2438, '2017-10-25 12:34:09', '', '', '', '', 5938, 6261, 25);
+insert into consult values ('Allen', 2438, '2017-10-25 16:34:09', '', 'Rabies', '', '', 5938, 6261, 25);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
 insert into participation values ('Jonas', 1025, '2018-10-25 08:30:00', 4909);
@@ -144,14 +144,17 @@ insert into participation values ('GSon', 8521,'2017-05-23 12:34:09', 3533);
 insert into participation values ('Sam The Kid', 2438,'2017-07-11 17:15:00', 7913);
 
 -- (name, code)
-insert into diagnosis_code values ('Arrhythmia', 234);
-insert into diagnosis_code values ('Diarrea', 200);
-insert into diagnosis_code values ('Pneumonia', 201);
-insert into diagnosis_code values ('Lung Cancer', 122);
-insert into diagnosis_code values ('Zika', 32);
-insert into diagnosis_code values ('Leuchemia', 3);
 insert into diagnosis_code values ('Anthrax', 1);
 insert into diagnosis_code values ('Rabies', 2);
+insert into diagnosis_code values ('Leuchemia', 3);
+insert into diagnosis_code values ('Arrhythmia', 4);
+insert into diagnosis_code values ('Diarrea', 5);
+insert into diagnosis_code values ('Pneumonia', 6);
+insert into diagnosis_code values ('Tumor', 7);
+insert into diagnosis_code values ('Zika', 8);
+insert into diagnosis_code values ('Obesity', 8);
+
+
 
 -- (name, code, date_timestamp, VAT_owner)
 insert into consult_diagnosis values ('Jonas', 234, '2018-10-25 08:30:00', 1025);
