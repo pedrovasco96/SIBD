@@ -42,7 +42,7 @@ insert into assistant values (5237);
 insert into assistant values (1833);
 
 -- (VAT)
-insert into client values (1833); --asssitant and client
+insert into client values (6261); --vet and client
 insert into client values (1025);
 insert into client values (1001);
 insert into client values (6501);
@@ -146,7 +146,7 @@ insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Ev
 insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement', 'has obesity', 'NA', 'Improved Diet', 5938, 6261, 32);
 insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
 insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 1833, 6261, 13);
-insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 7000, 6285, 9.5);
+insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 6261, 6285, 9.5);
 insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement',            'NA', 'NA', 'NA', 5938, 6261, 12);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
