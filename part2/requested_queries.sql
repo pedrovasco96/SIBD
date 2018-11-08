@@ -68,13 +68,13 @@ WHERE G.name2 = 'Dog'
 GROUP BY S.name
 ORDER BY count(D.code) DESC;
 
--- 8 (gives empty set, so it might work just fine :D)
-SELECT P.name
-FROM person P, client C, veterinary V, assistant A, consult CO
-WHERE (P.VAT=C.VAT OR P.VAT=CO.VAT_client)
-      AND (C.VAT=V.VAT OR C.VAT=A.VAT OR CO.VAT_client=V.VAT OR CO.VAT_client=A.VAT);
+-- 8
+SELECT distinct P.name
+FROM person P, veterinary V, assistant A, consult CO
+WHERE (P.VAT=CO.VAT_client)
+      AND (CO.VAT_client=V.VAT OR CO.VAT_client=A.VAT);
 
--- 9 (needs testing, needs iteration)
+-- 9
 SELECT P.name, P.address_street, P.address_zip, P.address_city
 FROM person P, client C, animal A, generalization_species G1, generalization_species G2
 WHERE P.VAT=C.VAT
