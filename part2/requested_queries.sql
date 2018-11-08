@@ -81,4 +81,4 @@ WHERE P.VAT=C.VAT
       AND C.VAT=A.VAT_owner
       AND A.species_name=G1.name1
       AND G1.name2=G2.name1
-      AND G2.name2="Bird";
+      AND (G2.name2="Bird" OR G1.name2="Bird");
