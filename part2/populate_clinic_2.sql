@@ -25,7 +25,7 @@ insert into person values (2438, 'Jameson Harrison', 'Braga', 'Praça Firmino', 
 insert into person values (8990, 'Elijah Vargas', 'Braga', 'Praçeta do Vale dos Reis', '3634-589');
 insert into person values (8424, 'Jared Mcfadden', 'Coimbra', 'Praçeta do Vale dos Reis', '6995-225');
 insert into person values (7000, 'Solomon Christian', 'Coimbra', 'Praçeta do Vale dos Reis', '9975-858');
-insert into person values (8521, 'Rossi', 'Vialonga', 'VBlock', '3008-678');
+insert into person values (8521, 'Rossi Rossadas', 'Vialonga', 'VBlock', '3008-678');
 insert into person values (1609, 'Vielka Montgomery', 'Coimbra', 'Rua Vasco', '5258-082');
 insert into person values (5938, 'Ivana Woodard', 'Coimbra', 'Rua Vasco', '5138-462');
 
@@ -42,6 +42,7 @@ insert into assistant values (5237);
 insert into assistant values (1833);
 
 -- (VAT)
+insert into client values (1833); --asssitant and client
 insert into client values (1025);
 insert into client values (1001);
 insert into client values (6501);
@@ -137,15 +138,16 @@ insert into animal values ('Kroa',      8521, 'Iguana', 'green', 'M',           
 -- o:objective observation
 -- a:assessment
 -- p:plan
-insert into consult values ('Snaiguxo',   1025, '2016-10-25 08:30:00', 'First Evaluation',  'NA', 'Anthrax', 'NA', 1025, 7160, 25.2);
-insert into consult values ('Elexau',     1025, '2016-10-25 10:30:00', 'First Evaluation',  'NA', 'Anthrax', 'NA', 1025, 7160, 24.5);
-insert into consult values ('Panacuda',   6501, '2016-10-25 10:30:00', 'First Evaluation',  'NA', 'Leuchemia', 'NA', 6501, 6261, 7);
-insert into consult values ('Nel',        5938, '2016-10-29 12:50:00', 'First Evaluation',  'NA', 'Obesity', 'Improved Diet', 5938, 6261, 20);
-insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Evaluation',  'NA', 'Arrhythmia', 'NA', 8521, 6261, 18);
-insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement','NA', 'Obesity', 'Improved Diet', 5938, 6261, 16);
-insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation', 'NA', 'Rabies', 'NA', 2438, 7160, 8);
-insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation', 'NA', 'Pneumonia', 'NA', 5938, 6261, 13);
-insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement','NA', 'NA', 'NA', 5938, 6261, 12);
+insert into consult values ('Snaiguxo',   1025, '2016-10-25 08:30:00', 'First Evaluation',            'anthrax', 'NA', 'NA', 1025, 7160, 25.2);
+insert into consult values ('Elexau',     1025, '2016-10-25 10:30:00', 'First Evaluation',            'anthrax', 'NA', 'NA', 1025, 7160, 24.5);
+insert into consult values ('Panacuda',   6501, '2016-10-25 10:30:00', 'First Evaluation',            'leuchemia', 'NA', 'NA', 6501, 6261, 7);
+insert into consult values ('Nel',        5938, '2016-10-29 12:50:00', 'First Evaluation',            'obesity', 'NA', 'Improved Diet', 5938, 6261, 35);
+insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Evaluation',            'arrhythmia and obese', 'NA', 'NA', 8521, 6261, 36);
+insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement', 'has obesity', 'NA', 'Improved Diet', 5938, 6261, 32);
+insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
+insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 1833, 6261, 13);
+insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 7000, 6285, 9.5);
+insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement',            'NA', 'NA', 'NA', 5938, 6261, 12);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
 insert into participation values ('Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
