@@ -42,7 +42,8 @@ insert into assistant values (5237);
 insert into assistant values (1833);
 
 -- (VAT)
-insert into client values (6261); --vet and client
+insert into client values (6261);
+
 insert into client values (1025);
 insert into client values (1001);
 insert into client values (6501);
@@ -79,15 +80,15 @@ insert into phone_number values (8521,935509172);
 insert into phone_number values (1609,956142621);
 insert into phone_number values (5938,921889291);
 
--- (name / latin name (when there is no commom name), latin name / description)
-
---general names
+/*
+(name / latin name (when there is no commom name), latin name / description)
+general names
+*/
 insert into species values ('Bird', 'Birds');
-insert into species values ('Accipitridae', 'Family'); --eagles
+insert into species values ('Accipitridae', 'Family');
 insert into species values ('Cat', 'Felis catus');
 insert into species values ('Dog', 'Canis familiaris');
-insert into species values ('Iguanidae', 'Family'); --iguanas
---usable names
+insert into species values ('Iguanidae', 'Family');
 insert into species values ('Bald Eagle', 'Eagle species');
 insert into species values ('Sphynx', 'Cat breed');
 insert into species values ('Russian Blue', 'Cat breed');
@@ -97,7 +98,6 @@ insert into species values ('Shiba Inu', 'Dog breed');
 insert into species values ('Doberman', 'Dog breed');
 insert into species values ('German Sheppard', 'Dog breed');
 insert into species values ('Iguana', 'Iguana');
-
 
 -- (general name, specific name / breed)
 insert into generalization_species values ('Iguana', 'Iguanidae');
@@ -133,11 +133,11 @@ insert into animal values ('Dolite',    8521, 'Doberman', 'black', 'M',         
 insert into animal values ('Bikey',     8521, 'Russian Blue', 'black', 'M',     2008, YEAR(CURDATE())-2008);
 insert into animal values ('Kroa',      8521, 'Iguana', 'green', 'M',           2014, YEAR(CURDATE())-2014);
 
--- (name, VAT_owner, date_timestamp, s, o, a, p, VAT_client, VAT_vet, weight)
--- s:subjetive observation
--- o:objective observation
--- a:assessment
--- p:plan
+/*(name, VAT_owner, date_timestamp, s, o, a, p, VAT_client, VAT_vet, weight)
+s:subjetive observation
+o:objective observation
+a:assessment
+p:plan*/
 insert into consult values ('Snaiguxo',   1025, '2016-10-25 08:30:00', 'First Evaluation',            'anthrax', 'NA', 'NA', 1025, 7160, 25.2);
 insert into consult values ('Elexau',     1025, '2016-10-25 10:30:00', 'First Evaluation',            'anthrax', 'NA', 'NA', 1025, 7160, 24.5);
 insert into consult values ('Panacuda',   6501, '2016-10-25 10:30:00', 'First Evaluation',            'leuchemia', 'NA', 'NA', 6501, 6261, 7);
@@ -145,8 +145,8 @@ insert into consult values ('Nel',        5938, '2016-10-29 12:50:00', 'First Ev
 insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Evaluation',            'arrhythmia and obese', 'NA', 'NA', 8521, 6261, 36);
 insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement', 'has obesity', 'NA', 'Improved Diet', 5938, 6261, 32);
 insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
-insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 1833, 6261, 13);
-insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 6261, 6285, 9.5);
+insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 2438, 6261, 13);
+insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 6261, 7160, 9.5);
 insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement',            'NA', 'NA', 'NA', 5938, 6261, 12);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
@@ -223,11 +223,11 @@ insert into radiography values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'ra
 insert into radiography values (2,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'rad/2438/20170711/');
 
 -- (num,name, VAT_owner, date_timestamp, type)
-insert into test_procedure values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Blood');
-insert into test_procedure values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Blood');
-insert into test_procedure values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Blood');
-insert into test_procedure values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Blood');
-insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Urine');
+insert into test_procedure values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'blood');
+insert into test_procedure values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'blood');
+insert into test_procedure values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'blood');
+insert into test_procedure values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'blood');
+insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'urine');
 
 -- (num, name, VAT_owner, date_timestamp, indicator_name, value)
 insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Diabetes', 250);
