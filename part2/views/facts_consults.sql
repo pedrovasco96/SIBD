@@ -1,12 +1,14 @@
 -- VIEWS
 -- 3
 CREATE VIEW facts_consults AS
-(SELECT A.name, A.VAT_owner AS VAT, D.date_timestamp AS timestamp,
-        (SELECT count(*) FROM procedure WHERE A.name=name
-        AND A.VAT_owner=VAT_owner AND D.date_timestamp=date_timestamp) AS num_procedures,
-        (SELECT count(distinct med_name) FROM prescription WHERE A.name=name
-        AND A.VAT_owner=VAT_owner AND D.date_timestamp=date_timestamp) AS num_medications
-  FROM dim_animal A, dim_date D, consult C
-  WHERE A.name=C.name AND A.VAT_owner=C.VAT_owner AND D.date_timestamp=C.date_timestamp
-  GROUP BY A.name, A.VAT_owner, D.date_timestamp
+(SELECT dim_animal.name, dim_animal.VAT_owner, dim_date.date_timestamp, count(distinct pro.num), count(distinct pre.med_name)
+	FROM
+		dim_date, dim_animal, consult
+		left outer join test_procedure pro
+			on (pro.name, pro.VAT_owner, pro.date_timestamp) = (consult.name, consult.VAT_owner, consult.date_timestamp)
+		left outer join prescription pre
+			on (pre.name, pre.VAT_owner, pre.date_timestamp) = (consult.name, consult.VAT_owner, consult.date_timestamp)
+		where (consult.name, consult.VAT_owner) = (dim_animal.name, dim_animal.VAT_owner)
+		and consult.date_timestamp = dim_date.date_timestamp
+	group by consult.name, consult.date_timestamp, consult.VAT_owner	
 );
