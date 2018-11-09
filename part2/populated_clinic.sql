@@ -146,7 +146,7 @@ insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Ev
 insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement', 'has obesity', 'NA', 'Improved Diet', 5938, 6261, 32);
 insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
 insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 2438, 6261, 13);
-insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'NA', 'NA', 'NA', 6261, 7160, 9.5);
+insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'obese', 'NA', 'NA', 6261, 7160, 9.5);
 insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement',            'NA', 'NA', 'NA', 5938, 6261, 12);
 
 -- (name, VAT_owner, date_timestamp, VAT_assistant)
@@ -159,7 +159,7 @@ insert into participation values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 791
 insert into diagnosis_code values ('Anthrax', 1);
 insert into diagnosis_code values ('Rabies', 2);
 insert into diagnosis_code values ('Leuchemia', 3);
-insert into diagnosis_code values ('Arrhythmia', 4);
+insert into diagnosis_code values ('Kidney failure', 4);
 insert into diagnosis_code values ('Diarrea', 5);
 insert into diagnosis_code values ('Pneumonia', 6);
 insert into diagnosis_code values ('Tumor', 7);
@@ -173,7 +173,7 @@ insert into consult_diagnosis values (3, 'Panacuda',   6501, '2016-10-25 10:30:0
 insert into consult_diagnosis values (9, 'Nel',        5938, '2016-10-29 12:50:00');
 insert into consult_diagnosis values (4, 'Dolite',     8521, '2016-10-31 12:30:00');
 insert into consult_diagnosis values (9, 'Nel',        5938, '2017-02-27 10:30:00');
-insert into consult_diagnosis values (2, 'Squinnaxi',  2438, '2017-07-11 17:15:00');
+insert into consult_diagnosis values (4, 'Squinnaxi',  2438, '2017-07-11 17:15:00');
 insert into consult_diagnosis values (6, 'Allen',      2438, '2017-10-25 16:30:00');
 
 -- (name, dosage, lab)
@@ -189,7 +189,7 @@ insert into prescription values (1, 'Snaiguxo',   1025, '2016-10-25 08:30:00', '
 insert into prescription values (1, 'Elexau',     1025, '2016-10-25 10:30:00', 'Varfine', 1, 'Bayer', 'Two times a day');
 insert into prescription values (3, 'Panacuda',   6501, '2016-10-25 10:30:00', 'Halibut', 1, 'Halibut', 'After poop');
 insert into prescription values (4, 'Dolite',     8521, '2016-10-31 12:30:00', 'Benuron', 2, 'Bene', 'One time a day for 4 days');
-insert into prescription values (2, 'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Brufen', 1, 'Abbott', 'One in the morning and one at night');
+insert into prescription values (4, 'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Brufen', 1, 'Abbott', 'One in the morning and one at night');
 insert into prescription values (6, 'Allen',      2438, '2017-10-25 16:30:00', 'Boostrix', 4, 'Imovax', 'One in the morning');
 
 -- (name, reference_value, units, description)
@@ -199,6 +199,7 @@ insert into indicator values ('Red cells', 300, 'units', 'Amount of red cells in
 insert into indicator values ('Protease Protein', 10, 'milligrams', 'Infection protein');
 insert into indicator values ('White cells', 120, 'units', 'Amount of white cells in blood');
 insert into indicator values ('Ureia', 20, 'milligrams', 'Amount of ureia in urine');
+insert into indicator values ('Creatinine level', 0.8, 'milligrams', 'Amount of creatinine in the blood');
 
 -- (num, name, VAT_owner, date_timestamp, description)
 insert into operation values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Analysis');
@@ -233,6 +234,8 @@ insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 
 insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Diabetes', 250);
 insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Diabetes', 350);
 insert into produced_indicator values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'White Cells', 160);
+insert into produced_indicator values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Creatinine level', 0.8);
 insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Protease Protein', 30);
 insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Red Cells', 280);
+insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Creatinine level', 1.2);
 insert into produced_indicator values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Ureia', 25);

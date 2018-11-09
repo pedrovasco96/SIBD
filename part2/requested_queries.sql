@@ -14,53 +14,55 @@ SELECT A.name, A.VAT_owner, A.species_name, A.age, C1.o
 FROM animal A, consult C1
 LEFT OUTER JOIN consult C2
 ON C1.VAT_owner = C2.VAT_owner
+AND C1.name = C2.name
 AND C1.date_timestamp < C2.date_timestamp
 WHERE C2.VAT_owner IS NULL
-AND (C1.o LIKE '%obese%' OR C1.o LIKE '%obesity%')
 AND A.VAT_owner = C1.VAT_owner
-AND A.name = C1.name;
+AND A.name = C1.name
+AND C1.weight > 30
+AND (C1.o LIKE '%obese%' OR C1.o LIKE '%obesity%')
 
 -- 4
-SELECT P.VAT, P.name, P.address_city, P.address_street, P.adress_zip
-FROM person P
-WHERE P.VAT NOT IN (SELECT animal.VAT_owner FROM animal);
+SELECT P.VAT, P.name, P.address_city, P.address_street, P.address_zip
+FROM person P, client C
+WHERE P.VAT NOT IN (SELECT animal.VAT_owner FROM animal)
+AND P.VAT = C.VAT;
 
 -- 5
-SELECT COUNT(DISTINCT medication.name), diagnosis_code.name
+SELECT diagnosis_code.name as 'Diagnosis', COUNT(DISTINCT medication.name) as 'Diff meds prescribed'
 FROM diagnosis_code, prescription, medication
 WHERE diagnosis_code.code=prescription.code and prescription.med_name=medication.name
 GROUP BY diagnosis_code.name
 ORDER BY COUNT(DISTINCT medication.name) ASC;
 
---6 (not working, possibly something with unions)
-SELECT count(P.VAT_assistant), count(distinct C.date_timestamp), count(D.code), count(PR.name), count(PC.date_timestamp)
-FROM consult_diagnosis D,operation PR, consult C, participation P, prescription PC
-WHERE YEAR(C.date_timestamp) = 2017;
-      AND YEAR(D.date_timestamp) = 2017
-      AND YEAR(P.date_timestamp) = 2017
-      AND YEAR(PC.date_timestamp) = 2017
-      AND YEAR(PR.date_timestamp) = 2017;
-
-(SELECT count(distinct C.date_timestamp) AS total_consults
-FROM consult C
-WHERE YEAR(C.date_timestamp)=2017)
-UNION
-(SELECT count(*) AS total_diagnosis
-FROM consult_diagnosis D
-WHERE YEAR(D.date_timestamp)=2017);
-UNION
-(SELECT count(*) AS assistants_participating
-FROM participation P
-WHERE YEAR(P.date_timestamp)=2017)
-UNION
-(SELECT count(*) AS procedures_done
-FROM operation PR
-WHERE YEAR(PR.date_timestamp)=2017)
-UNION
-(SELECT count(*) AS prescriptions_given
-FROM prescription PC
-WHERE YEAR(PC.date_timestamp)=2017);
-
+--6
+SET @assistant_count = (SELECT count(P.VAT_assistant)
+                          FROM consult C, participation P
+                          WHERE YEAR(C.date_timestamp)=2017
+                          AND P.date_timestamp=C.date_timestamp
+                          AND P.VAT_owner=C.VAT_owner);
+SET @operation_count = (SELECT count(O.num)
+                          FROM consult C, operation O
+                          WHERE YEAR(C.date_timestamp)=2017
+                          AND O.date_timestamp=C.date_timestamp
+                          AND O.VAT_owner=C.VAT_owner);
+SET @diagnosis_count = (SELECT count(D.code)
+                          FROM consult C, consult_diagnosis D
+                          WHERE YEAR(C.date_timestamp)=2017
+                          AND D.date_timestamp=C.date_timestamp
+                          AND D.VAT_owner=C.VAT_owner);
+SET @prescription_count = (SELECT count(PC.code)
+                          FROM consult C, prescription PC
+                          WHERE YEAR(C.date_timestamp)=2017
+                          AND PC.date_timestamp=C.date_timestamp
+                          AND PC.VAT_owner=C.VAT_owner);
+SET @total = (SELECT count(C.date_timestamp)
+                          FROM consult C
+                          WHERE YEAR(C.date_timestamp)=2017);
+SELECT  @assistant_count/@total as 'avg assistants',
+        @prescription_count/@total as 'avg procedures',
+        @diagnosis_count/@total as 'avg diagnostics',
+        @prescription_count/@total as 'avg prescriptions';
 
 -- 7 (good for now, needs adjusting to make sure it's not the same animal)
 SELECT S.name, C.name

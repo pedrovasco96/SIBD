@@ -1,6 +1,0 @@
--- 5
-SELECT COUNT(DISTINCT medication.name), diagnosis_code.name
-FROM diagnosis_code, prescription, medication
-WHERE diagnosis_code.code=prescription.code and prescription.med_name=medication.name
-GROUP BY diagnosis_code.name
-ORDER BY COUNT(DISTINCT medication.name) ASC;

@@ -6,7 +6,7 @@ drop table if exists indicator;
 drop table if exists test_procedure;
 drop table if exists performed;
 drop table if exists radiography;
-drop table if exists proceeding;
+drop table if exists operation;
 drop table if exists prescription;
 drop table if exists medication;
 drop table if exists consult_diagnosis;
@@ -25,9 +25,9 @@ drop table if exists person;
 create table person
    (VAT  int(10),
     name  varchar(255),
-    adress_city  varchar(255),
-    adress_street  varchar(255),
-    adress_zip  varchar(255),
+    address_city  varchar(255),
+    address_street  varchar(255),
+    address_zip  varchar(255),
     primary key(VAT));
 
 create table phone_number
@@ -53,6 +53,14 @@ create table veterinary
     primary key(VAT),
     foreign key(VAT) references person(VAT));
 
+/*
+GRANT ALTER ON ist181843.person
+alter table person
+add constraint chk_subclass CHECK (VAT IN (SELECT VAT FROM client
+                                           UNION SELECT VAT FROM veterinary
+                                           UNION SELECT VAT FROM assistant));
+*/
+
 create table species
    (name  varchar(255),
     description text,
@@ -67,14 +75,14 @@ create table generalization_species
 
 create table animal
    (name  varchar(255),
-    VAT  int(10),
+    VAT_owner  int(10),
     species_name varchar(255),
     colour varchar(255),
     gender char(1),
     birth_year year,
     age int(3), -- should be computed from year
-    primary key(name,VAT),
-    foreign key(VAT) references client(VAT),
+    primary key(name,VAT_owner),
+    foreign key(VAT_owner) references client(VAT),
     foreign key(species_name) references species(name));
 
 create table consult
@@ -89,7 +97,7 @@ create table consult
     VAT_vet  int(10),
     weight numeric(5,2) UNSIGNED,
     primary key(name,VAT_owner,date_timestamp),
-    foreign key(VAT_owner,name) references animal(VAT,name),
+    foreign key(VAT_owner,name) references animal(VAT_owner,name),
     foreign key(VAT_client) references client(VAT),
     foreign key(VAT_vet) references veterinary(VAT));
 
@@ -108,12 +116,12 @@ create table diagnosis_code
     primary key(code));
 
 create table consult_diagnosis
-   (name  varchar(255),
-    code  int(10),
-    date_timestamp timestamp,
+   (code  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
-    primary key(name,VAT_owner,date_timestamp,code),
-    foreign key(VAT_owner,name,date_timestamp) references consult(VAT_owner,name,date_timestamp),
+    date_timestamp timestamp,
+    primary key(code,name,VAT_owner,date_timestamp),
+    foreign key(name, VAT_owner, date_timestamp) references consult(name, VAT_owner, date_timestamp),
     foreign key(code) references diagnosis_code(code));
 
 create table medication
@@ -123,16 +131,16 @@ create table medication
     primary key(name,lab,dosage));
 
 create table prescription
-   (name  varchar(255),
-    code  int(10),
-    date_timestamp timestamp,
+   (code int(10),
+    name  varchar(255),
     VAT_owner  int(10),
+    date_timestamp timestamp,
     med_name varchar(255),
     dosage  int(5),
     lab  varchar(255),
     regime varchar(255),
-    primary key(name,VAT_owner,date_timestamp,code,med_name,dosage,lab),
-    foreign key(VAT_owner,name,date_timestamp, code) references consult_diagnosis(VAT_owner,name,date_timestamp,code),
+    primary key(code, name,VAT_owner,date_timestamp,med_name,dosage,lab),
+    foreign key(code, name, VAT_owner,date_timestamp) references consult_diagnosis(code, name, VAT_owner, date_timestamp),
     foreign key(med_name,lab,dosage) references medication(name, lab, dosage));
 
 create table indicator
@@ -142,50 +150,51 @@ create table indicator
     description text,
     primary key(name));
 
-create table proceeding
-   (name  varchar(255),
-    num  int(10),
-    date_timestamp timestamp,
+create table operation
+   (num  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
+    date_timestamp timestamp,
     description text,
     primary key(name,VAT_owner,date_timestamp,num),
     foreign key(name,VAT_owner,date_timestamp) references consult(name,VAT_owner,date_timestamp));
 -- check RI
 
 create table performed
-   (name  varchar(255),
-    num  int(10),
-    date_timestamp timestamp,
+   (num  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
+    date_timestamp timestamp,
     VAT_assistant int(10),
     primary key(name,VAT_owner,date_timestamp,num,VAT_assistant),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num),
+    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num),
     foreign key(VAT_assistant) references assistant(VAT));
 
 create table radiography
-   (name  varchar(255),
-    num  int(10),
-    date_timestamp timestamp,
+   (num  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
+    date_timestamp timestamp,
     file text,
     primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num));
+    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num));
 
 create table test_procedure
-   (name  varchar(255),
-    num  int(10),
-    date_timestamp timestamp,
+   (num  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
-    type char(5),
+    date_timestamp timestamp,
+    type varchar(5) NOT NULL,
+    constraint chk_type check (type in ('blood', 'urine')),
     primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references proceeding(name,VAT_owner,date_timestamp,num));
--- check RI
+    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num)
+  );
 
 create table produced_indicator
-   (name  varchar(255),
-    num  int(10),
-    date_timestamp timestamp,
+   (num  int(10),
+    name  varchar(255),
     VAT_owner  int(10),
+    date_timestamp timestamp,
     indicator_name varchar(255),
     value numeric(10,4),
     primary key(name,VAT_owner,date_timestamp,num,indicator_name),
