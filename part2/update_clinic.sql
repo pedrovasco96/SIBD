@@ -1,6 +1,6 @@
 -- UPDATING THE DATABASE
 
--- 1 (needs to check if it's client)
+-- 1
 UPDATE person
 SET address_city = 'Leiria', address_street = 'Rua Sésamo', address_zip = '6670-567'
 WHERE person.name = 'John Smith'
@@ -24,3 +24,26 @@ AND person.VAT=phone_number.VAT
 AND person.VAT=client.VAT
 AND animal.VAT_owner=person.VAT
 AND consult.VAT_owner=person.VAT;
+
+-- 4
+SET @code_kidney = (SELECT code
+                          FROM diagnosis_code
+                          WHERE diagnosis_code.name='Kidney failure');
+
+INSERT INTO diagnosis_code
+VALUES ('End-stage renal disease', 10);
+
+SET @code_renal = (SELECT code
+                          FROM diagnosis_code
+                          WHERE diagnosis_code.name='End-stage renal disease');
+
+SET @consults_creatinine = (SELECT P.date_timestamp
+                            FROM produced_indicator P, test_procedure T
+                            WHERE T.type='blood'
+                            AND T.date_timestamp=P.date_timestamp
+                            AND P.indicator_name='Creatinine level'
+                            AND P.value>1.0);
+
+UPDATE consult_diagnosis
+SET code = 10
+WHERE date_timestamp = @consults_creatinine;
