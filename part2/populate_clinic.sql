@@ -122,7 +122,7 @@ insert into animal values ('Sofia',     5938, 'Papillon', 'white', 'F',         
 insert into animal values ('Tobias',    7000, 'Papillon', 'black', 'M',         2016, YEAR(CURDATE())-2016);
 insert into animal values ('Zizzy',     8521, 'Doberman', 'brown', 'M',         2011, YEAR(CURDATE())-2011);
 insert into animal values ('Sticeed',   8990, 'Sphynx', 'white', 'M',           2011, YEAR(CURDATE())-2011);
-insert into animal values ('Squinnaxi', 2438, 'Papillon', 'white', 'M',         2010, YEAR(CURDATE())-2010);
+insert into animal values ('Squinnaxi', 6261, 'Papillon', 'white', 'M',         2010, YEAR(CURDATE())-2010);
 insert into animal values ('Allen',     2438, 'Shiba Inu', 'black', 'M',        1994, YEAR(CURDATE())-1994);
 insert into animal values ('Valete',    2438, 'Shiba Inu', 'black', 'M',        2015, YEAR(CURDATE())-2015);
 insert into animal values ('Bispo',     8424, 'Shiba Inu', 'white', 'M',        2017, YEAR(CURDATE())-2017);
@@ -144,7 +144,7 @@ insert into consult values ('Panacuda',   6501, '2016-10-25 10:30:00', 'First Ev
 insert into consult values ('Nel',        5938, '2016-10-29 12:50:00', 'First Evaluation',            'obesity', 'NA', 'Improved Diet', 5938, 6261, 35);
 insert into consult values ('Dolite',     8521, '2016-10-31 12:30:00', 'First Evaluation',            'arrhythmia and obese', 'NA', 'NA', 8521, 6261, 36);
 insert into consult values ('Nel',        5938, '2017-02-27 10:30:00', 'Showed signs of improvement', 'has obesity', 'NA', 'Improved Diet', 5938, 6261, 32);
-insert into consult values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
+insert into consult values ('Squinnaxi',  6261, '2017-07-11 17:15:00', 'First Evaluation',            'rabies', 'NA', 'NA', 2438, 7160, 8);
 insert into consult values ('Allen',      2438, '2017-10-25 16:30:00', 'First Evaluation',            'pneumonia', 'NA', 'NA', 2438, 6261, 13);
 insert into consult values ('Kroa',       8521, '2017-10-25 16:30:00', 'First Evaluation',            'obese', 'NA', 'NA', 6261, 7160, 9.5);
 insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much improvement',            'NA', 'NA', 'NA', 5938, 6261, 12);
@@ -153,7 +153,7 @@ insert into consult values ('Nel',        5938, '2018-02-27 10:30:00', 'Much imp
 insert into participation values ('Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
 insert into participation values ('Panacuda',   6501, '2016-10-25 10:30:00', 4909);
 insert into participation values ('Dolite',     8521, '2016-10-31 12:30:00', 3533);
-insert into participation values ('Squinnaxi',  2438, '2017-07-11 17:15:00', 7913);
+insert into participation values ('Squinnaxi',  6261, '2017-07-11 17:15:00', 7913);
 
 -- (name, code)
 insert into diagnosis_code values ('Anthrax', 1);
@@ -173,7 +173,7 @@ insert into consult_diagnosis values (3, 'Panacuda',   6501, '2016-10-25 10:30:0
 insert into consult_diagnosis values (9, 'Nel',        5938, '2016-10-29 12:50:00');
 insert into consult_diagnosis values (4, 'Dolite',     8521, '2016-10-31 12:30:00');
 insert into consult_diagnosis values (9, 'Nel',        5938, '2017-02-27 10:30:00');
-insert into consult_diagnosis values (4, 'Squinnaxi',  2438, '2017-07-11 17:15:00');
+insert into consult_diagnosis values (4, 'Squinnaxi',  6261, '2017-07-11 17:15:00');
 insert into consult_diagnosis values (6, 'Allen',      2438, '2017-10-25 16:30:00');
 
 -- (name, dosage, lab)
@@ -189,7 +189,7 @@ insert into prescription values (1, 'Snaiguxo',   1025, '2016-10-25 08:30:00', '
 insert into prescription values (1, 'Elexau',     1025, '2016-10-25 10:30:00', 'Varfine', 1, 'Bayer', 'Two times a day');
 insert into prescription values (3, 'Panacuda',   6501, '2016-10-25 10:30:00', 'Halibut', 1, 'Halibut', 'After poop');
 insert into prescription values (4, 'Dolite',     8521, '2016-10-31 12:30:00', 'Benuron', 2, 'Bene', 'One time a day for 4 days');
-insert into prescription values (4, 'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Brufen', 1, 'Abbott', 'One in the morning and one at night');
+insert into prescription values (4, 'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Brufen', 1, 'Abbott', 'One in the morning and one at night');
 insert into prescription values (6, 'Allen',      2438, '2017-10-25 16:30:00', 'Boostrix', 4, 'Imovax', 'One in the morning');
 
 -- (name, reference_value, units, description)
@@ -205,8 +205,8 @@ insert into indicator values ('Creatinine level', 0.8, 'milligrams', 'Amount of 
 insert into operation values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Analysis');
 insert into operation values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Toraxic Radiography');
 insert into operation values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Analysis');
-insert into operation values (2,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Toraxic Radiography');
-insert into operation values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Analysis');
+insert into operation values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Toraxic Radiography');
+insert into operation values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Analysis');
 insert into operation values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
 insert into operation values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
 
@@ -214,27 +214,27 @@ insert into operation values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Anal
 insert into performed values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
 insert into performed values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
 insert into performed values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 4909);
-insert into performed values (2,'Squinnaxi',  2438, '2017-07-11 17:15:00', 1833);
-insert into performed values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 1833);
+insert into performed values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
+insert into performed values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
 insert into performed values (1,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
 insert into performed values (3,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
 
 -- (num, name, VAT_owner, date_timestamp, file)
 insert into radiography values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'rad/1025/20161025/');
-insert into radiography values (2,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'rad/2438/20170711/');
+insert into radiography values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'rad/2438/20170711/');
 
 -- (num,name, VAT_owner, date_timestamp, type)
 insert into test_procedure values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'blood');
 insert into test_procedure values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'blood');
-insert into test_procedure values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'blood');
+insert into test_procedure values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'blood');
 insert into test_procedure values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'blood');
 insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'urine');
 
 -- (num, name, VAT_owner, date_timestamp, indicator_name, value)
 insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Diabetes', 250);
 insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Diabetes', 350);
-insert into produced_indicator values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'White Cells', 160);
-insert into produced_indicator values (1,'Squinnaxi',  2438, '2017-07-11 17:15:00', 'Creatinine level', 0.8);
+insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'White Cells', 160);
+insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Creatinine level', 0.8);
 insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Protease Protein', 30);
 insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Red Cells', 280);
 insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Creatinine level', 1.2);
