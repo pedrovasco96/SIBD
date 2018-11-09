@@ -1,8 +1,7 @@
 -- 1
--- change animal.vat to owner name
-SELECT DISTINCT A.name, P2.name, A.species_name, A.age
-FROM animal A, consult C, person P1, person P2
-WHERE P1.name='John Smith' AND P1.VAT=C.VAT_vet AND A.VAT=C.VAT_owner AND P2.VAT = A.VAT;
+SELECT DISTINCT A.name, P.name, A.species_name, A.age
+FROM animal A, consult C, person V, person P
+WHERE V.name='John Smith' AND V.VAT=C.VAT_vet AND A.VAT_owner=C.VAT_owner AND P.VAT = A.VAT_owner AND A.name = C.name;
 
 -- 2
 SELECT I.name, I.reference_value
@@ -11,14 +10,20 @@ WHERE I.reference_value>100 AND I.units='milligrams'
 ORDER BY I.reference_value DESC;
 
 -- 3
-SELECT DISTINCT A.name, A.VAT, A.species_name, A.age
-FROM animal A, consult C
-WHERE A.name=C.name AND C.weight>30 AND (C.o='obese' OR C.o='obesity');
+SELECT A.name, A.VAT_owner, A.species_name, A.age, C1.o
+FROM animal A, consult C1
+LEFT OUTER JOIN consult C2
+ON C1.VAT_owner = C2.VAT_owner
+AND C1.date_timestamp < C2.date_timestamp
+WHERE C2.VAT_owner IS NULL
+AND (C1.o LIKE '%obese%' OR C1.o LIKE '%obesity%')
+AND A.VAT_owner = C1.VAT_owner
+AND A.name = C1.name;
 
 -- 4
-SELECT P.VAT, P.name, P.adress_city, P.adress_street, P.adress_zip
+SELECT P.VAT, P.name, P.address_city, P.address_street, P.adress_zip
 FROM person P
-WHERE P.VAT NOT IN (SELECT animal.VAT FROM animal);
+WHERE P.VAT NOT IN (SELECT animal.VAT_owner FROM animal);
 
 -- 5
 SELECT COUNT(DISTINCT medication.name), diagnosis_code.name
