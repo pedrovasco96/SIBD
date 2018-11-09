@@ -6,25 +6,25 @@
 -- veterinary
 insert into person values (7160, 'Pedro Vasco', 'Lisboa', 'Rua Jorge', '2695-048');
 insert into person values (6261, 'John Smith', 'Lisboa', 'Compaund', '9747-202');
-insert into person values (6285, 'Jamil Merritt', 'Lisboa', 'Rua da Graça', '1360-965');
+insert into person values (6285, 'Jamil Merritt', 'Lisboa', 'Rua da Graca', '1360-965');
 
 -- assistant
 insert into person values (4909, 'Sara Vieira', 'Lisboa', 'Risotte', '1697-908');
-insert into person values (3533, 'Brenna Pratt', 'Porto', 'Rua da Graça', '2666-901');
-insert into person values (7913, 'Shakir Silva', 'Porto', 'Rua da Glória', '1602-725');
+insert into person values (3533, 'Brenna Pratt', 'Porto', 'Rua da Graca', '2666-901');
+insert into person values (7913, 'Shakir Silva', 'Porto', 'Rua da Gloria', '1602-725');
 insert into person values (5237, 'Awais Kaiser', 'Porto', 'Avenida da Liberdade', '5850-873');
 insert into person values (1833, 'Cecilia Holmes', 'Porto', 'Avenida da Liberdade', '9196-721');
 
 -- client
-insert into person values (1025, 'João Rodrigues', 'Lisboa', 'Rua Fialho', '2200-238');
+insert into person values (1025, 'Joao Rodrigues', 'Lisboa', 'Rua Fialho', '2200-238');
 insert into person values (1001, 'Erasmus Cannon', 'Porto', 'Avenida da Liberdade', '2314-477');
 insert into person values (6501, 'Carlos Brennan', 'Braga', 'Rua 24 de Julho', '5874-773');
 insert into person values (3408, 'Miriam Cameron', 'Braga', 'Rua 24 de Julho', '3897-231');
-insert into person values (3409, 'Clio Morin', 'Braga', 'Praça Firmino', '3673-594');
-insert into person values (2438, 'Jameson Harrison', 'Braga', 'Praça Firmino', '1152-114');
-insert into person values (8990, 'Elijah Vargas', 'Braga', 'Praçeta do Vale dos Reis', '3634-589');
-insert into person values (8424, 'Jared Mcfadden', 'Coimbra', 'Praçeta do Vale dos Reis', '6995-225');
-insert into person values (7000, 'Solomon Christian', 'Coimbra', 'Praçeta do Vale dos Reis', '9975-858');
+insert into person values (3409, 'Clio Morin', 'Braga', 'Praca Firmino', '3673-594');
+insert into person values (2438, 'Jameson Harrison', 'Braga', 'Praca Firmino', '1152-114');
+insert into person values (8990, 'Elijah Vargas', 'Braga', 'Praceta do Vale dos Reis', '3634-589');
+insert into person values (8424, 'Jared Mcfadden', 'Coimbra', 'Praceta do Vale dos Reis', '6995-225');
+insert into person values (7000, 'Solomon Christian', 'Coimbra', 'Praceta do Vale dos Reis', '9975-858');
 insert into person values (8521, 'Rossi Rossadas', 'Vialonga', 'VBlock', '3008-678');
 insert into person values (1609, 'Vielka Montgomery', 'Coimbra', 'Rua Vasco', '5258-082');
 insert into person values (5938, 'Ivana Woodard', 'Coimbra', 'Rua Vasco', '5138-462');
