@@ -128,8 +128,8 @@ create table consult_diagnosis
     VAT_owner  int(10),
     date_timestamp timestamp,
     primary key(code,name,VAT_owner,date_timestamp),
-    foreign key(name, VAT_owner, date_timestamp) references consult(name, VAT_owner, date_timestamp) on delete cascade on update cascade,
-    foreign key(code) references diagnosis_code(code) on delete cascade on update cascade
+    constraint FK_consult foreign key(name, VAT_owner, date_timestamp) references consult(name, VAT_owner, date_timestamp) on delete cascade on update cascade,
+    constraint FK_code foreign key(code) references diagnosis_code(code) on delete cascade on update cascade
   );
 
 create table medication
