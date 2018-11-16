@@ -9,10 +9,10 @@
     $animal_name = $_REQUEST['animal_name'];
     $animal_owner = $_REQUEST['animal_owner'];
 
-    $host="localhost";  // MySQL is hosted in this machine
-    $user="root";   // <== replace istxxx by your IST identity
-    $password="";   // <== paste here the password assigned by mysql_reset
-    $dbname = "vet2";   // Do nothing here, your database has the same name as your username.
+    $host="localhost";	// MySQL is hosted in this machine
+    $user="root";	// <== replace istxxx by your IST identity
+    $password="";	// <== paste here the password assigned by mysql_reset
+    $dbname = "vet2";	// Do nothing here, your database has the same name as your username.
 
     $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
@@ -78,6 +78,8 @@
         echo("</table>\n");
     }
 
+echo("<button onclick=document.location.href=\"Get_appointment_data.php?flag=1\">Inserir paciente e marcar consulta</button>");
+
     // third query
     $sql = "SELECT * FROM consult C, animal A, person P
             WHERE P.VAT=A.VAT_owner AND A.name='$animal_name' AND A.VAT_owner='$VAT1' 
@@ -124,6 +126,7 @@
     if($num_a<=0 && $num>0){
         echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
     }
+    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 
 </body>

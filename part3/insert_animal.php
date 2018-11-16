@@ -1,7 +1,4 @@
 <html><meta charset="UTF-8">
-<head>
-    <title>Casa Açores Vet Clinic</title>
-</head>
 <body>
 <form action="insert_animal_db.php" method="post">
     VAT Owner:<br> <input type="text" name="VAT"><br>
@@ -131,5 +128,8 @@
     </select><p>
     <input type="submit">
 </form>
+<?php
+    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+?>
 </body>
 </html>
