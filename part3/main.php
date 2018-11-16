@@ -1,15 +1,19 @@
-<html>
+<html><meta charset="UTF-8">
+<head>
+    <title>Casa Açores Vet Clinic</title>
+</head>
 <body>
 <?php
+
     $VAT1 = $_REQUEST['VAT1'];
     $animal_name = $_REQUEST['animal_name'];
     $animal_owner = $_REQUEST['animal_owner'];
 
-    $host="db.ist.utl.pt";  // MySQL is hosted in this machine
-    $user=" ";  // <== replace istxxx by your IST identity
-    $password=" ";   // <== paste here the password assigned by mysql_reset
-    $dbname = $user;    // Do nothing here, your database has the same name as your username.
- 
+    $host="localhost";  // MySQL is hosted in this machine
+    $user="root";   // <== replace istxxx by your IST identity
+    $password="";   // <== paste here the password assigned by mysql_reset
+    $dbname = "vet2";   // Do nothing here, your database has the same name as your username.
+
     $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
     $sql = "SELECT * FROM person P, client C WHERE C.VAT='$VAT1' AND C.VAT=P.VAT;";
@@ -46,11 +50,11 @@
 
     $result = $connection->query($sql);
 
-    $num = $result->rowCount();
+    $num_a = $result->rowCount();
 
-    echo("<p>$num records retrieved:</p>\n");
+    echo("<p>$num_a records retrieved:</p>\n");
 
-    if($num>0){
+    if($num_a>0){
         echo("<table border=\"1\">\n");
         echo("<tr><td>VAT Owner</td><td>name</td><td>Species Name</td><td>Colour</td><td>Gender</td><td>Birth Year</td><td>Age</td></tr>\n");
         foreach($result as $row)
@@ -81,11 +85,11 @@
 
     $result = $connection->query($sql);
 
-    $num = $result->rowCount();
+    $num_c = $result->rowCount();
 
-    echo("<p>$num records retrieved:</p>\n");
+    echo("<p>$num_c records retrieved:</p>\n");
 
-    if($num>0){
+    if($num_c>0){
         echo("<table border=\"1\">\n");
         echo("<tr><td>VAT Owner</td><td>name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>weight</td></tr>\n");
         foreach($result as $row)
@@ -115,6 +119,12 @@
         echo("</table>\n");
     }
 
+    $connection = null;
+
+    if($num_a<=0 && $num>0){
+        echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
+    }
 ?>
+
 </body>
 </html>
