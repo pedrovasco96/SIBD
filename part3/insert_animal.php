@@ -1,8 +1,15 @@
 <html><meta charset="UTF-8">
 <body>
+<?php
+    session_start();
+    $VAT_owner = $_SESSION['VAT1'];
+    $animal_name = $_SESSION['animal_name'];
+    session_destroy();
+    session_start();
+    $_SESSION['VAT_owner'] = $VAT_owner;
+    $_SESSION['animal_name'] = $animal_name;
+?>
 <form action="insert_animal_db.php" method="post">
-    VAT Owner:<br> <input type="text" name="VAT"><br>
-    Animal Name:<br> <input type="text" name="animal_name"><br>
     Species Name:<br> <input type="text" name="species_name"><br>
     Colour:<br> <input type="text" name="colour"><br>
     Gender:<br> <select name="gender">

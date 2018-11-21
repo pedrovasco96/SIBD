@@ -14,7 +14,16 @@
     $password="";	// <== paste here the password assigned by mysql_reset
     $dbname = "vet2";	// Do nothing here, your database has the same name as your username.
 
-    $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    try{
+        $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    }
+    catch(PDOException $exception) {
+        echo("<p>Error: ");
+        echo($exception->getMessage());
+        echo("</p>");
+        exit();
+    }
+
 
     $sql = "SELECT * FROM person P, client C WHERE C.VAT='$VAT1' AND C.VAT=P.VAT;";
 
@@ -78,8 +87,6 @@
         echo("</table>\n");
     }
 
-echo("<button onclick=document.location.href=\"Get_appointment_data.php?flag=1\">Inserir paciente e marcar consulta</button>");
-
     // third query
     $sql = "SELECT * FROM consult C, animal A, person P
             WHERE P.VAT=A.VAT_owner AND A.name='$animal_name' AND A.VAT_owner='$VAT1' 
@@ -125,6 +132,9 @@ echo("<button onclick=document.location.href=\"Get_appointment_data.php?flag=1\"
 
     if($num_a<=0 && $num>0){
         echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
+        session_start();
+        $_SESSION['VAT1'] = $VAT1;
+        $_SESSION['animal_name'] = $animal_name;
     }
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>

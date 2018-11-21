@@ -5,8 +5,9 @@
 <body>
 <?php
 
-    $VAT_owner = $_REQUEST['VAT'];
-    $animal_name = $_REQUEST['animal_name'];
+    session_start();
+    $VAT_owner = $_SESSION['VAT_owner'];
+    $animal_name = $_SESSION['animal_name'];
     $species_name = $_REQUEST['species_name'];
     $colour = $_REQUEST['colour'];
     $gender = $_REQUEST['gender'];
@@ -17,7 +18,15 @@
     $password="";	// <== paste here the password assigned by mysql_reset
     $dbname = "vet2";	// Do nothing here, your database has the same name as your username.
 
-    $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    try{
+        $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    }
+    catch(PDOException $exception) {
+        echo("<p>Error: ");
+        echo($exception->getMessage());
+        echo("</p>");
+        exit();
+    }
 
     $sql = "insert into animal values ('$animal_name',  '$VAT_owner', '$species_name', 
     '$colour', '$gender', '$birth_year', YEAR(CURDATE())-'$birth_year');";
@@ -25,6 +34,7 @@
     $result = $connection->query($sql);
 
     echo("New Animal Inserted in Database \n");
+    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
 ?>
