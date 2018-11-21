@@ -54,7 +54,8 @@
     }
 
     // second query
-    $sql = "SELECT * FROM animal A, person P
+    $sql = "SELECT A.name, A.VAT_owner, A.species_name, A.colour, A.gender, A.birth_year, A.age 
+            FROM animal A, person P
             WHERE P.VAT=A.VAT_owner AND A.name='$animal_name' AND (P.name LIKE '%$animal_owner%');";
 
     $result = $connection->query($sql);
@@ -65,13 +66,14 @@
 
     if($num_a>0){
         echo("<table border=\"1\">\n");
-        echo("<tr><td>VAT Owner</td><td>name</td><td>Species Name</td><td>Colour</td><td>Gender</td><td>Birth Year</td><td>Age</td></tr>\n");
+        echo("<tr><td>VAT Owner</td><td>Name</td><td>Species Name</td><td>Colour</td><td>Gender</td><td>Birth Year</td><td>Age</td></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
             echo($row["VAT_owner"]);
             echo("</td><td>");
-            echo($row["name"]);
+            $name=$row["name"];
+            echo "<a href='show_consults.php'>$name</a>";
             echo("</td><td>");
             echo($row["species_name"]);
             echo("</td><td>\n");
@@ -100,7 +102,7 @@
 
     if($num_c>0){
         echo("<table border=\"1\">\n");
-        echo("<tr><td>VAT Owner</td><td>name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>weight</td></tr>\n");
+        echo("<tr><td>VAT Owner</td><td>Name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>weight</td></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
@@ -132,10 +134,12 @@
 
     if($num_a<=0 && $num>0){
         echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
-        session_start();
-        $_SESSION['VAT1'] = $VAT1;
-        $_SESSION['animal_name'] = $animal_name;
     }
+
+    session_start();
+    $_SESSION['VAT1'] = $VAT1;
+    $_SESSION['animal_name'] = $animal_name;
+
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 
