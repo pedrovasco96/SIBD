@@ -97,7 +97,7 @@
 
     $num_c = $result->rowCount();
 
-    echo("<p>$num_c consults associated with this animal an this client:</p>\n");
+    echo("<p>$num_c consults associated with this animal and this client:</p>\n");
 
     if($num_c>0){
         echo("<table border=\"1\">\n");
