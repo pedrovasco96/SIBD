@@ -25,7 +25,7 @@
     }
 
     $sql = "SELECT C.date_timestamp, C.VAT_vet FROM consult C
-            WHERE C.VAT_owner='$VAT_owner'";
+            WHERE C.name='$animal_name'";
 
     $result = $connection->query($sql);
     $num = $result->rowCount();
@@ -38,7 +38,8 @@
         foreach ($result as $row) {
             echo("<tr><td>");
             $name = $row["date_timestamp"];
-            echo "<a href='ini.html'>$name</a>";
+            echo "<a href= \"show_detailed_consults.php?date_timestamp=$name&animal_name=$animal_name\"> $name</a>";
+            #echo "<a href='show_detailed_consults.php'>$name</a>";
             echo("</td><td>");
             echo($row["VAT_vet"]);
             echo("</td></tr>\n");
