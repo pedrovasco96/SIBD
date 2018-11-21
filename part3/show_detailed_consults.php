@@ -23,6 +23,32 @@
         exit();
     }
 
+    $sql = "SELECT A.age, A.gender, A.colour, A.species_name FROM animal A
+                WHERE A.name='$animal_name'";
+
+    $result = $connection->query($sql);
+    $num = $result->rowCount();
+
+    echo("<p>Animal info:</p>\n");
+
+    if($num>0) {
+        echo("<table border=\"1\">\n");
+        echo("<tr><td>Age</td><td>Gender</td><td>Colour</td><td>Specie</td></tr>\n");
+        foreach($result as $row)
+        {
+            echo("<tr><td>");
+            echo($row["age"]);
+            echo("</td><td>");
+            echo($row["gender"]);
+            echo("</td><td>");
+            echo($row["colour"]);
+            echo("</td><td>\n");
+            echo($row["species_name"]);
+            echo("</td></tr>\n");
+        }
+        echo("</table>\n");
+    }
+
     $sql = "SELECT * FROM consult C
                 WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name'";
 
@@ -56,6 +82,26 @@
             echo($row["VAT_vet"]);
             echo("</td><td>\n");
             echo($row["weight"]);
+            echo("</td></tr>\n");
+        }
+        echo("</table>\n");
+    }
+
+    $sql = "SELECT D.code FROM consult_diagnosis D
+                    WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name'";
+
+    $result = $connection->query($sql);
+    $num = $result->rowCount();
+
+    echo("<p>$num diagnosis in this consult</p>\n");
+
+    if($num>0) {
+        echo("<table border=\"1\">\n");
+        echo("<tr><td>Code</td></tr>\n");
+        foreach($result as $row)
+        {
+            echo("<tr><td>");
+            echo($row["code"]);
             echo("</td></tr>\n");
         }
         echo("</table>\n");
@@ -96,6 +142,7 @@
     }
 
     echo("<p> </p>\n");
+    echo("<button onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 </body>

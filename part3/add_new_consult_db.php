@@ -6,8 +6,28 @@
 <?php
 
     session_start();
-    $VAT_owner = $_SESSION['VAT1'];
+    $VAT_client = $_SESSION['VAT_client'];
     $animal_name = $_SESSION['animal_name'];
+    $s = $_REQUEST['s'];
+    $o = $_REQUEST['o'];
+    $a = $_REQUEST['a'];
+    $p = $_REQUEST['p'];
+    $weight = $_REQUEST['weight'];
+    $VAT_vet = $_REQUEST['VAT_vet'];
+    $date_timestamp=date("Y-m-d h:i:sa");
+
+    if(!$s){
+        $s = 'NA';
+    }
+    if(!$o){
+        $o = 'NA';
+    }
+    if(!$a){
+        $a = 'NA';
+    }
+    if(!$p){
+        $p = 'NA';
+    }
 
     $host="localhost";	// MySQL is hosted in this machine
     $user="root";	// <== replace istxxx by your IST identity
@@ -24,31 +44,23 @@
         exit();
     }
 
-    $sql = "SELECT C.date_timestamp, C.VAT_vet FROM consult C
-            WHERE C.name='$animal_name'";
+    $sql = "SELECT A.VAT_owner FROM animal A
+            WHERE A.name='$animal_name'";
 
     $result = $connection->query($sql);
-    $num = $result->rowCount();
 
-    echo("<p>$num consults found</p>\n");
-
-    if($num>0) {
-        echo("<table border=\"1\">\n");
-        echo("<tr><td>Date and Time</td><td>VAT Vet</td></tr>\n");
-        foreach ($result as $row) {
-            echo("<tr><td>");
-            $name = $row["date_timestamp"];
-            echo "<a href= \"show_detailed_consults.php?date_timestamp=$name&animal_name=$animal_name\"> $name</a>";
-            #echo "<a href='show_detailed_consults.php'>$name</a>";
-            echo("</td><td>");
-            echo($row["VAT_vet"]);
-            echo("</td></tr>\n");
-        }
-        echo("</table>\n");
+    foreach($result as $row)
+    {
+        $VAT_owner=$row["VAT_owner"];
     }
 
-    echo("<p> </p>\n");
-    echo("<button onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
+    $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', '$s', '$o', '$a', '$p', 
+            '$VAT_client', '$VAT_vet', '$weight');";
+
+    $result = $connection->query($sql);
+
+    echo("New Consult Inserted in Databse \n");
+
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
