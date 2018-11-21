@@ -15,7 +15,7 @@
     A:<br> <input type="text" name="a"><br>
     P:<br> <input type="text" name="p"><br>
     Weight:<br> <input type="text" name="weight"><br>
-    VAT Vet:<br> <input type="text" name="VAT_vet"><br>
+    VAT Vet:<br> <input type="text" name="VAT_vet"><p>
     <input type="submit">
 </form>
 <?php

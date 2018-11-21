@@ -24,14 +24,13 @@
         exit();
     }
 
-
     $sql = "SELECT * FROM person P, client C WHERE C.VAT='$VAT1' AND C.VAT=P.VAT;";
 
     $result = $connection->query($sql);
 
     $num = $result->rowCount();
 
-    echo("<p>$num records retrieved:</p>\n");
+    echo("<p>$num client found:</p>\n");
 
     if ($num > 0){
         echo("<table border=\"1\">\n");
@@ -62,7 +61,7 @@
 
     $num_a = $result->rowCount();
 
-    echo("<p>$num_a records retrieved:</p>\n");
+    echo("<p>$num_a animal found:</p>\n");
 
     if($num_a>0){
         echo("<table border=\"1\">\n");
@@ -98,7 +97,7 @@
 
     $num_c = $result->rowCount();
 
-    echo("<p>$num_c records retrieved:</p>\n");
+    echo("<p>$num_c consults associated with this animal an this client:</p>\n");
 
     if($num_c>0){
         echo("<table border=\"1\">\n");
@@ -133,6 +132,7 @@
     $connection = null;
 
     if($num_a<=0 && $num>0){
+
         echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
     }
 
@@ -140,6 +140,7 @@
     $_SESSION['VAT1'] = $VAT1;
     $_SESSION['animal_name'] = $animal_name;
 
+    echo "<p>";
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 

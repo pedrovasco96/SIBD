@@ -87,7 +87,7 @@
         echo("</table>\n");
     }
 
-    $sql = "SELECT D.code FROM consult_diagnosis D
+    $sql = "SELECT D.code, D.name FROM consult_diagnosis D
                     WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name'";
 
     $result = $connection->query($sql);
@@ -97,10 +97,12 @@
 
     if($num>0) {
         echo("<table border=\"1\">\n");
-        echo("<tr><td>Code</td></tr>\n");
+        echo("<tr><td>Name</td><td>Code</td></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
+            echo($row["name"]);
+            echo("</td><td>\n");
             echo($row["code"]);
             echo("</td></tr>\n");
         }
