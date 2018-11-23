@@ -29,19 +29,16 @@
         $p = 'NA';
     }
 
-    $host="localhost";	// MySQL is hosted in this machine
-    $user="root";	// <== replace istxxx by your IST identity
-    $password="";	// <== paste here the password assigned by mysql_reset
-    $dbname = "vet2";	// Do nothing here, your database has the same name as your username.
-
+    include 'credentials.php';
+    
     try{
-        $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+      $connection = new PDO($dsn, $user, $pass);
     }
-    catch(PDOException $exception) {
-        echo("<p>Error: ");
-        echo($exception->getMessage());
-        echo("</p>");
-        exit();
+    catch(PDOException $exception){
+      echo("<p>Error: ");
+      echo($exception->getMessage());
+      echo("</p>");
+      exit();
     }
 
     $sql = "SELECT A.VAT_owner FROM animal A
@@ -54,7 +51,7 @@
         $VAT_owner=$row["VAT_owner"];
     }
 
-    $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', '$s', '$o', '$a', '$p', 
+    $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', '$s', '$o', '$a', '$p',
             '$VAT_client', '$VAT_vet', '$weight');";
 
     $result = $connection->query($sql);
