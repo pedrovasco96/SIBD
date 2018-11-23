@@ -1,5 +1,6 @@
 <html><meta charset="UTF-8">
 <head>
+    <link rel="stylesheet" href="styles.css">
     <title>Casa Açores Vet Clinic</title>
 </head>
 <body>
@@ -10,7 +11,7 @@
     $animal_owner = $_REQUEST['animal_owner'];
 
     include 'credentials.php';
-    
+
     try{
       $connection = new PDO($dsn, $user, $pass);
     }
@@ -27,11 +28,11 @@
 
     $num = $result->rowCount();
 
-    echo("<p>$num client found:</p>\n");
+    echo("<p>Clients found:</p>\n");
 
     if ($num > 0){
         echo("<table border=\"1\">\n");
-        echo("<tr><td>VAT</td><td>name</td><td>address_city</td><td>address_street</td><td>address_zip</td></tr>\n");
+        echo("<tr><th>VAT</th><th>Name</th><th>City</th><th>Street</th><th>ZIP</th></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
@@ -58,11 +59,11 @@
 
     $num_a = $result->rowCount();
 
-    echo("<p>$num_a animal found:</p>\n");
+    echo("<p>Animals found:</p>\n");
 
     if($num_a>0){
         echo("<table border=\"1\">\n");
-        echo("<tr><td>VAT Owner</td><td>Name</td><td>Species Name</td><td>Colour</td><td>Gender</td><td>Birth Year</td><td>Age</td></tr>\n");
+        echo("<tr><th>VAT Owner</th><th>Name</th><th>Species Name</th><th>Colour</th><th>Gender</th><th>Birth Year</th><th>Age</th></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
@@ -94,11 +95,11 @@
 
     $num_c = $result->rowCount();
 
-    echo("<p>$num_c consults associated with this animal and this client:</p>\n");
+    echo("<p>Consults associated with this animal and this client:</p>\n");
 
     if($num_c>0){
         echo("<table border=\"1\">\n");
-        echo("<tr><td>VAT Owner</td><td>Name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>weight</td></tr>\n");
+        echo("<tr><th>VAT Owner</th><th>Name</th><th>Date/Time</th><th>s</th><th>o</th><th>a</th><th>p</th><th>VAT Client</th><th>VAT Vet</th><th>weight</th></tr>\n");
         foreach($result as $row)
         {
             echo("<tr><td>");
@@ -137,8 +138,9 @@
     $_SESSION['VAT1'] = $VAT1;
     $_SESSION['animal_name'] = $animal_name;
 
-    echo "<p>";
+    echo("\n \n");
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+    //echo("<button class="button">Link Button</button>");
 ?>
 
 </body>

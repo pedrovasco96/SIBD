@@ -1,4 +1,8 @@
 <html><meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Insert animal</title>
+</head>
 <body>
 <?php
     session_start();
@@ -10,13 +14,13 @@
     $_SESSION['animal_name'] = $animal_name;
 ?>
 <form action="insert_animal_db.php" method="post">
-    Species Name:<br> <input type="text" name="species_name"><br>
-    Colour:<br> <input type="text" name="colour"><br>
-    Gender:<br> <select name="gender">
+    <p> Species Name:<br> <input type="text" name="species_name"></p>
+    <p> Colour:<br> <input type="text" name="colour"></p>
+    <p> Gender:<br> <select name="gender">
         <option value="M">M</option>
         <option value="F">F</option>
-    </select> <br>
-    Birth Year:<br>
+    </select></p>
+    <p> Birth Year:<br>
     <select name="birth_year">
         <option value="2018">2018</option>
         <option value="2017">2017</option>
@@ -132,7 +136,7 @@
         <option value="1907">1907</option>
         <option value="1906">1906</option>
         <option value="1905">1905</option>
-    </select><p>
+    </select></p>
     <input type="submit">
 </form>
 <?php

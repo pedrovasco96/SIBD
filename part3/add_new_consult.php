@@ -1,4 +1,8 @@
 <html><meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Add consult</title>
+</head>
 <body>
 <?php
     session_start();
@@ -10,12 +14,12 @@
     $_SESSION['animal_name'] = $animal_name;
 ?>
 <form action="add_new_consult_db.php" method="post">
-    S:<br> <input type="text" name="s"><br>
-    O:<br> <input type="text" name="o"><br>
-    A:<br> <input type="text" name="a"><br>
-    P:<br> <input type="text" name="p"><br>
-    Weight:<br> <input type="text" name="weight"><br>
-    VAT Vet:<br> <input type="text" name="VAT_vet"><p>
+    <p> S:<br> <input type="text" name="s"></p>
+    <p> O:<br> <input type="text" name="o"></p>
+    <p> A:<br> <input type="text" name="a"></p>
+    <p> P:<br> <input type="text" name="p"></p>
+    <p> Weight:<br> <input type="text" name="weight"></p>
+    <p> VAT Vet:<br> <input type="text" name="VAT_vet"></p>
     <input type="submit">
 </form>
 <?php

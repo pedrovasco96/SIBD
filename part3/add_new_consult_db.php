@@ -1,7 +1,4 @@
 <html><meta charset="UTF-8">
-<head>
-    <title>Casa Açores Vet Clinic</title>
-</head>
 <body>
 <?php
 
@@ -30,7 +27,7 @@
     }
 
     include 'credentials.php';
-    
+
     try{
       $connection = new PDO($dsn, $user, $pass);
     }

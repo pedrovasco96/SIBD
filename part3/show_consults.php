@@ -1,6 +1,7 @@
 <html><meta charset="UTF-8">
 <head>
-    <title>Casa Açores Vet Clinic</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Consult info</title>
 </head>
 <body>
 <?php
@@ -10,7 +11,7 @@
     $animal_name = $_SESSION['animal_name'];
 
     include 'credentials.php';
-    
+
     try{
       $connection = new PDO($dsn, $user, $pass);
     }
@@ -27,7 +28,7 @@
     $result = $connection->query($sql);
     $num = $result->rowCount();
 
-    echo("<p>$num consults found</p>\n");
+    //echo("<p>$num consults found</p>\n");
 
     if($num>0) {
         echo("<table border=\"1\">\n");

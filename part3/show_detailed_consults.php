@@ -1,6 +1,7 @@
 <html><meta charset="UTF-8">
 <head>
-    <title>Casa Açores Vet Clinic</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Detailed consult info</title>
 </head>
 <body>
 <?php
@@ -11,13 +12,13 @@
     include 'credentials.php';
 
     try{
-        $connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+      $connection = new PDO($dsn, $user, $pass);
     }
-    catch(PDOException $exception) {
-        echo("<p>Error: ");
-        echo($exception->getMessage());
-        echo("</p>");
-        exit();
+    catch(PDOException $exception){
+      echo("<p>Error: ");
+      echo($exception->getMessage());
+      echo("</p>");
+      exit();
     }
 
     $sql = "SELECT A.age, A.gender, A.colour, A.species_name FROM animal A
@@ -52,8 +53,8 @@
     $result = $connection->query($sql);
     $num = $result->rowCount();
 
-    echo("<p>$num consults found</p>\n");
-
+    //echo("<p>$num consults found</p>\n");
+    echo("<p>Consult info:</p>\n");
     if($num>0) {
         echo("<table border=\"1\">\n");
         echo("<tr><td>VAT Owner</td><td>Name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>Weight</td></tr>\n");
@@ -90,7 +91,8 @@
     $result = $connection->query($sql);
     $num = $result->rowCount();
 
-    echo("<p>$num diagnosis in this consult</p>\n");
+    //echo("<p>$num diagnosis in this consult</p>\n");
+    echo("<p>Diagnosis in this consult</p>\n");
 
     if($num>0) {
         echo("<table border=\"1\">\n");
@@ -112,7 +114,7 @@
     $result = $connection->query($sql);
     $num = $result->rowCount();
 
-    echo("<p>$num prescription associated with this consult</p>\n");
+    echo("<p>Prescriptions associated with this consult</p>\n");
 
     if($num>0) {
         echo("<table border=\"1\">\n");
@@ -141,7 +143,7 @@
     }
 
     echo("<p> </p>\n");
-    echo "<a href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\"> Add Blood Test To This Consult </a> <p>";
+    echo "<button href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\"> Add Blood Test To This Consult </button> <p>";
     #echo("<button onclick=document.location.href=\"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\">Add Blood Test To This Consult</button>");
     echo("<button onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");

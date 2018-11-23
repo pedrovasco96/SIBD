@@ -1,4 +1,8 @@
 <html><meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Add procedure</title>
+</head>
 <body>
 <?php
     $date_timestamp = $_GET['date_timestamp'];
@@ -8,10 +12,10 @@
     $_SESSION['date_timestamp'] = $date_timestamp;
 ?>
 <form action="add_procedure_db.php" method="post">
-    VAT Assistant:<br> <input type="text" name="VAT_assistant"><p>
-    Creatinine Level:<br> <input type="text" name="creatinine"><br>
-    Protease Protein:<br> <input type="text" name="protease"><br>
-    Red Cells:<br> <input type="text" name="red_cells"><p>
+    <p> VAT Assistant:<br> <input type="text" name="VAT_assistant"></p>
+    <p> Creatinine Level:<br> <input type="text" name="creatinine"></p>
+    <p> Protease Protein:<br> <input type="text" name="protease"></p>
+    <p> Red Cells:<br> <input type="text" name="red_cells"></p>
     <input type="submit">
 </form>
 <?php
