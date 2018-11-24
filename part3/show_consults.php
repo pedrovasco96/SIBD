@@ -46,8 +46,8 @@
     }
 
     echo("<p> </p>\n");
-    echo("<button onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
-    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+    echo("<button class='button' onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
+    echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
 ?>

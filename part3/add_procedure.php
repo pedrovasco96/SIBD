@@ -19,7 +19,7 @@
     <input type="submit">
 </form>
 <?php
-    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+    echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 </body>
 </html>

@@ -25,14 +25,47 @@ tr:nth-child(even) {
 }
 
 .button {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Green */
     border: none;
-    /*color: white;
-    padding: 15px 32px;
+    color: white;
+    padding: 6px 14px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     margin: 4px 2px;
-    cursor: pointer;*/
-  }
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+input[type=submit]{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+input[type=submit]:hover {
+    background-color: #555555;
+    color: white;
+}

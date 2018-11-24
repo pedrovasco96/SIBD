@@ -24,6 +24,24 @@
 
     $sql = "SELECT * FROM person P, client C WHERE C.VAT='$VAT1' AND C.VAT=P.VAT;";
 
+    /*try{
+      $sql = "SELECT *
+              FROM person P, client C
+              WHERE C.VAT = :vat
+                AND C.VAT = P.VAT;";
+      $stmt=$connection->prepare($sql);
+      $stmt->bindParam(':vat', $VAT1, PDO::PARAM_INT);
+      $stmt->execute();
+      $result=$stmt->get_result();
+      echo("<p>filhe de pute: </p>");
+    }
+    catch(PDOException $exception){
+      echo("<p>Error: ");
+      echo($exception->getMessage());
+      echo("</p>");
+      exit();
+    }*/
+
     $result = $connection->query($sql);
 
     $num = $result->rowCount();
@@ -131,7 +149,7 @@
 
     if($num_a<=0 && $num>0){
 
-        echo("<button onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
+        echo("<button class='button' onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
     }
 
     session_start();
@@ -139,8 +157,7 @@
     $_SESSION['animal_name'] = $animal_name;
 
     echo("\n \n");
-    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
-    //echo("<button class="button">Link Button</button>");
+    echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 ?>
 
 </body>
