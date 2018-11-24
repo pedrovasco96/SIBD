@@ -33,7 +33,7 @@
               }
             ?>
       </select></p>
-      <input type="submit">
+      <input class='button' type="submit">
   </form>
   <?php
       echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
