@@ -1,12 +1,20 @@
+/*GENERAL*/
+.content {
+    max-width: 950px;
+    margin: auto;
+}
+
 p {
     font-family: Helvetica;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 h1 {
     font-family: Helvetica;
     font-size: 25px;
 }
+
+/*TABLES*/
 
 table {
     font-family: arial, sans-serif;
@@ -15,15 +23,33 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid #a6a6a6;
     text-align: left;
     padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #ffffff;
 }
 
+/*FORMS*/
+input[type=text], select {
+    width: 60%;
+    padding: 8px 15px;
+    margin: 6px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+div {
+    /*border-radius: 5px;*/
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/*BUTTONS*/
 .button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -43,29 +69,6 @@ tr:nth-child(even) {
 }
 
 .button:hover {
-    background-color: #555555;
-    color: white;
-}
-
-input[type=submit]{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 6px 14px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-}
-
-input[type=submit]:hover {
     background-color: #555555;
     color: white;
 }
