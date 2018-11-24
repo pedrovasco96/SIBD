@@ -143,7 +143,7 @@
     }
 
     echo("<p> </p>\n");
-    echo "<button href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\"> Add Blood Test To This Consult </button> <p>";
+    echo "<a href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\"> Add Blood Test To This Consult </a> <p>";
     #echo("<button onclick=document.location.href=\"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\">Add Blood Test To This Consult</button>");
     echo("<button onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
