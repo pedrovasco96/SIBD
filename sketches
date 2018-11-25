@@ -1,0 +1,47 @@
+
+delimiter $$
+create function count_accounts(c_name varchar(255))
+returns integer
+begin
+declare a_count integer;
+select count(account_number)	into a_count
+from depositor
+where customer_name	=	c_name;
+return a_count;
+end$$
+delimiter ;
+
+delimiter $$
+create function sum_bal(c_name varchar(255))
+  returns integer;
+  begin
+    declare s integer;
+    select sum(balance) into s
+    from account natural join depositor
+    where customer_name = c_name;
+    return s
+  end $$
+  delimiter;
+
+
+select	sum(amount)
+from	loan natural	join	borrower
+where	customer_name	=	‘Smith’;
+
+delimiter $$
+create function abs1_balance(c_name varchar(255))
+  returns integer
+  begin
+      declare bal integer;
+      declare b integer;
+      declare l integer;
+      select (b-l) into bal
+      from account, depositor, loan, borrower;
+      where (select balance into b
+        from account natural join depositor
+        where customer_name = c_name) and
+        (select amount into l
+        from loan natural join borrower
+        where customer_name = c_name);
+      return bal;
+  end $$

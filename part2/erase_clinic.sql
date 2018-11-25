@@ -22,3 +22,9 @@ drop table if exists assistant;
 drop table if exists veterinary;
 drop table if exists phone_number;
 drop table if exists person;
+
+/*
+delimiter $$
+drop trigger if exists current_age;
+delimiter $$
+*/

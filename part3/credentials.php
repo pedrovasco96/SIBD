@@ -14,4 +14,9 @@ $password="";	// <== paste here the password assigned by mysql_reset
 $dbname = "vet2";	// Do nothing here, your database has the same name as your username. */
 
 //SARA
+/*$host = "db.ist.utl.pt";
+$user = "ist180935";
+$pass = "";
+$dsn = "mysql:host=$host;dbname=$user";*/
+
 ?>
