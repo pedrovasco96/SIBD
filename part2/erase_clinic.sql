@@ -26,5 +26,9 @@ drop table if exists person;
 /*
 delimiter $$
 drop trigger if exists current_age;
+drop trigger if exists not_assist;
+drop trigger if exists not_vet;
+drop trigger if exists dif_number;
+drop function if exists total_consults;
 delimiter $$
 */
