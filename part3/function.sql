@@ -9,3 +9,5 @@ create function total_consults(a_name varchar(255), year int)
     return total;
   end$$
   delimiter;
+
+-- Call: select total_consults('name', year);
