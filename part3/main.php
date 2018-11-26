@@ -108,8 +108,8 @@
 
       // third query
       $sql = "SELECT * FROM consult C, animal A, person P
-              WHERE P.VAT=A.VAT_owner AND A.name='$animal_name' AND A.VAT_owner='$VAT1'
-              AND C.VAT_owner='$VAT1' AND (P.name LIKE '%$animal_owner%');";
+              WHERE P.VAT=A.VAT_owner AND (P.name LIKE '%$animal_owner%') AND A.name='$animal_name'
+              AND C.VAT_owner=A.VAT_owner AND C.VAT_client = '$VAT1';";
 
       $result = $connection->query($sql);
 
