@@ -35,7 +35,6 @@
         $stmt->bindParam(':vat', $VAT1, PDO::PARAM_INT);
         $stmt->execute();
         $result=$stmt->get_result();
-        echo("<p>filhe de pute: </p>");
       }
       catch(PDOException $exception){
         echo("<p>Error: ");

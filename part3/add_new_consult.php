@@ -22,7 +22,7 @@
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
       <p> Weight: <input type="text" name="weight" placeholder="Weight (Kg)..."></p>
       <p> Veterinary's VAT:
-      <select name="vet_vat">
+      <select name="VAT_vet">
           <?php
               include 'credentials.php';
 
