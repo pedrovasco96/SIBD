@@ -11,7 +11,7 @@
     $p = $_REQUEST['p'];
     $weight = $_REQUEST['weight'];
     $VAT_vet = $_REQUEST['VAT_vet'];
-    $date_timestamp=date("Y-m-d h:i:sa");
+    $date_timestamp=date("Y-m-d H:i:sa");
 
     if(!$s){
         $s = 'NA';
