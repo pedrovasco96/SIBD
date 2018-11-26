@@ -1,16 +1,19 @@
 -- 1 - update animal's age after new scheduled consult
-delimiter $$
+delimiter //
+drop trigger if exists current_age;
 create trigger current_age after insert on consult
 for each row
 begin
-  declare new_age integer;
-  set new_age = year(CURRENT_TIMESTAMP) - animal.birth_year;
-  update animal
-    set animal.age = 25
-    where animal.VAT_owner = new.VAT_owner and animal.name = new.name;
-end$$
-delimiter;
-
+declare new_age integer;
+set new_age = year(CURRENT_TIMESTAMP) - (select a.birth_year from animal a
+                                         where a.VAT_owner = new.VAT_owner and a.name = new.name);
+update animal
+set animal.age = new_age
+where animal.VAT_owner = NEW.VAT_owner and animal.name = NEW.name;
+end
+//
+/*year(CURRENT_TIMESTAMP) - (select a.birth_year from animal a
+                           where a.VAT = new.VAT_owner and a.name = new.name;)*/
 
 -- 2 - Check if doctor is not assitant
 delimiter $$
