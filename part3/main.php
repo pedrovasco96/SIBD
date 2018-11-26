@@ -8,7 +8,7 @@
   <h1>Casa Açores Vet Clinic - Search results</h1>
   <?php
 
-      $VAT1 = $_REQUEST['VAT1'];
+      $VAT_client = $_REQUEST['vat_client'];
       $animal_name = $_REQUEST['animal_name'];
       $animal_owner = $_REQUEST['animal_owner'];
 
@@ -16,6 +16,7 @@
 
       try{
         $connection = new PDO($dsn, $user, $pass);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
       catch(PDOException $exception){
         echo("<p>Error: ");
@@ -24,35 +25,17 @@
         exit();
       }
 
-      $sql = "SELECT * FROM person P, client C WHERE C.VAT='$VAT1' AND C.VAT=P.VAT;";
-
-      /*try{
-        $sql = "SELECT *
-                FROM person P, client C
-                WHERE C.VAT = :vat
-                  AND C.VAT = P.VAT;";
-        $stmt=$connection->prepare($sql);
-        $stmt->bindParam(':vat', $VAT1, PDO::PARAM_INT);
-        $stmt->execute();
-        $result=$stmt->get_result();
-      }
-      catch(PDOException $exception){
-        echo("<p>Error: ");
-        echo($exception->getMessage());
-        echo("</p>");
-        exit();
-      }*/
-
-      $result = $connection->query($sql);
-
-      $num = $result->rowCount();
+      $query = "SELECT * FROM person P, client C WHERE C.VAT= :vat_client AND C.VAT=P.VAT;";
+      $exec = $connection->prepare($query);
+      $exec->bindParam(':vat_client', $VAT_client);
+      $exec->execute();
+      $num_client = $exec->rowCount();
 
       echo("<p>Clients found:</p>\n");
-
-      if ($num > 0){
+      if ($num_client > 0){
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT</th><th>Name</th><th>City</th><th>Street</th><th>ZIP</th></tr>\n");
-          foreach($result as $row)
+          foreach($exec as $row)
           {
               echo("<tr><td>");
               echo($row["VAT"]);
@@ -70,20 +53,26 @@
       }
 
       // second query
+      /*$query ="SELECT A.name, A.VAT_owner, A.species_name, A.colour, A.gender, A.birth_year, A.age
+               FROM animal A, person P
+               WHERE P.VAT=A.VAT_owner AND A.name = ':animal_name' AND (P.name LIKE '%:animal_owner%');";
+      $exec = $connection->prepare($query);
+      $exec->bindParam(':animal_name', $animal_name);
+      $exec->bindParam(':animal_owner', $animal_owner);
+      $exec->execute();
+      $num = $exec->rowCount();*/
       $sql = "SELECT A.name, A.VAT_owner, A.species_name, A.colour, A.gender, A.birth_year, A.age
               FROM animal A, person P
               WHERE P.VAT=A.VAT_owner AND A.name='$animal_name' AND (P.name LIKE '%$animal_owner%');";
-
-      $result = $connection->query($sql);
-
-      $num_a = $result->rowCount();
+      $exec = $connection->query($sql);
+      $num_animal = $exec->rowCount();
 
       echo("<p>Animals found:</p>\n");
 
-      if($num_a>0){
+      if($num_animal>0){
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT Owner</th><th>Name</th><th>Species Name</th><th>Colour</th><th>Gender</th><th>Birth Year</th><th>Age</th></tr>\n");
-          foreach($result as $row)
+          foreach($exec as $row)
           {
               echo("<tr><td>");
               echo($row["VAT_owner"]);
@@ -106,20 +95,28 @@
       }
 
       // third query
+      /*$query = "SELECT * FROM consult C, animal A, person P
+              WHERE P.VAT=A.VAT_owner AND (P.name LIKE '%:animal_owner%') AND A.name= ':animal_name'
+              AND C.VAT_owner=A.VAT_owner AND C.VAT_client = :vat_client;";
+      $exec = $connection->prepare($query);
+      $exec->bindParam(':vat_client', $VAT_client);
+      $exec->bindParam(':animal_name', $animal_name);
+      $exec->bindParam(':animal_owner', $animal_owner);
+      $exec->execute();
+      $num = $exec->rowCount();*/
+
       $sql = "SELECT * FROM consult C, animal A, person P
-              WHERE P.VAT=A.VAT_owner AND (P.name LIKE '%$animal_owner%') AND A.name='$animal_name'
-              AND C.VAT_owner=A.VAT_owner AND C.VAT_client = '$VAT1';";
-
-      $result = $connection->query($sql);
-
-      $num_c = $result->rowCount();
+        WHERE P.VAT=A.VAT_owner AND (P.name LIKE '%$animal_owner%') AND A.name='$animal_name'
+        AND C.VAT_owner=A.VAT_owner AND C.VAT_client = '$VAT_client';";
+      $exec = $connection->query($sql);
+      $num_consult = $exec->rowCount();
 
       echo("<p>Consults associated with this animal and this client:</p>\n");
 
-      if($num_c>0){
+      if($num_consult>0){
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT Owner</th><th>Name</th><th>Date/Time</th><th>s</th><th>o</th><th>a</th><th>p</th><th>VAT Client</th><th>VAT Vet</th><th>weight</th></tr>\n");
-          foreach($result as $row)
+          foreach($exec as $row)
           {
               echo("<tr><td>");
               echo($row["VAT_owner"]);
@@ -148,13 +145,13 @@
 
       $connection = null;
 
-      if($num_a<=0 && $num>0){
+      if($num_animal <= 0 && $num_client > 0){
 
           echo("<button class='button' onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
       }
 
       session_start();
-      $_SESSION['VAT1'] = $VAT1;
+      $_SESSION['VAT_client'] = $VAT_client;
       $_SESSION['animal_name'] = $animal_name;
 
       echo("\n \n");
