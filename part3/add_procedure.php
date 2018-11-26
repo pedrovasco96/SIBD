@@ -14,7 +14,35 @@
       $_SESSION['date_timestamp'] = $date_timestamp;
   ?>
   <form action="add_procedure_db.php" method="post">
-      <p> Assistant's VAT:<br> <input type="text" name="VAT_assistant"></p>
+      <p> Assistant's VAT:<br>
+      <select name="vet_vat">
+          <?php
+              include 'credentials.php';
+
+              try{
+                $connection = new PDO($dsn, $user, $pass);
+              }
+              catch(PDOException $exception){
+                echo("<p>Error: ");
+                echo($exception->getMessage());
+                echo("</p>");
+                exit();
+              }
+              $sql = "SELECT VAT
+                      FROM assistant;";
+
+              $result = $connection->query($sql);
+
+              $num_a = $result->rowCount();
+
+              if($num_a>0){
+                  foreach($result as $row)
+                  {
+                    echo '<option value='.$row["VAT"].'>'.$row["VAT"].'</option>';
+                  }
+              }
+            ?>
+      </select></p>
       <p> Creatinine Level:<br> <input type="text" name="creatinine"></p>
       <p> Protease Protein:<br> <input type="text" name="protease"></p>
       <p> Red Cells:<br> <input type="text" name="red_cells"></p>
