@@ -1,12 +1,12 @@
 -- 1 - update animal's age after new scheduled consult
 delimiter $$
-create trigger current_age before insert on consult
+create trigger current_age after insert on consult
 for each row
 begin
-  declare @new_age int;
-  set @new_age = year(CURRENT_TIMESTAMP) - animal.birth_year;
+  declare new_age integer;
+  set new_age = year(CURRENT_TIMESTAMP) - animal.birth_year;
   update animal
-    set age = convert (varchar, @new_age)
+    set animal.age = 25
     where animal.VAT_owner = new.VAT_owner and animal.name = new.name;
 end$$
 delimiter;
@@ -31,14 +31,11 @@ begin
 end$$
 delimiter;
 
--- 3 - Check if no individuals have the same phone number
+-- 3 - Check if no individuals have the same phone number - AVISO!!
 delimiter $$
 create trigger dif_pnumber before insert on person
 for each row
 begin
-  delete from phone_number
-    where phone_number.VAT = new.VAT;
-  delete from person
-    where person.VAT = new.VAT;
+
 end$$
 delimiter;
