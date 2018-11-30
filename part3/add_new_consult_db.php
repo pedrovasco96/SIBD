@@ -39,19 +39,26 @@
     }
 
     $sql = "SELECT A.VAT_owner FROM animal A
-            WHERE A.name='$animal_name'";
+            WHERE A.name=:animal_name";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':animal_name', $animal_name);
+    $exec->execute();
 
-    $result = $connection->query($sql);
-
-    foreach($result as $row)
+    foreach($exec as $row)
     {
         $VAT_owner=$row["VAT_owner"];
     }
 
-    $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', '$s', '$o', '$a', '$p',
-            '$VAT_client', '$VAT_vet', '$weight');";
-
-    $result = $connection->query($sql);
+    $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', :s, :o, :a, :p,
+            '$VAT_client', :VAT_vet, :weight);";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':s', $s);
+    $exec->bindParam(':o', $o);
+    $exec->bindParam(':a', $a);
+    $exec->bindParam(':p', $p);
+    $exec->bindParam(':VAT_vet', $VAT_vet);
+    $exec->bindParam(':weight', $weight);
+    $exec->execute();
 
     echo("New Consult Inserted in Databse \n");
 

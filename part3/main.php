@@ -96,7 +96,7 @@
                   AND C.VAT_owner=A.VAT_owner AND C.VAT_client = :vat_client;";
       $exec = $connection->prepare($query);
       $a_owner="%".$animal_owner."%";
-      $exec->bindParam(':vat_client', $VAT_client);
+      $exec->bindParam(':vat_client', $VAT_client, PDO::PARAM_INT);
       $exec->bindParam(':animal_name', $animal_name);
       $exec->bindParam(':animal_owner', $a_owner);
       $exec->execute();

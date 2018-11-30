@@ -25,10 +25,14 @@
       exit();
     }
 
-    $sql = "insert into animal values ('$animal_name',  '$VAT_owner', '$species_name',
-    '$colour', '$gender', '$birth_year', YEAR(CURDATE())-'$birth_year');";
-
-    $result = $connection->query($sql);
+    $sql = "insert into animal values ('$animal_name',  '$VAT_owner', :species_name,
+    :colour, :gender, :birth_year, YEAR(CURDATE())-'$birth_year');";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':species_name', $species_name);
+    $exec->bindParam(':colour', $colour);
+    $exec->bindParam(':gender', $gender);
+    $exec->bindParam(':birth_year', $birth_year);
+    $exec->execute();
 
     echo("New Animal Inserted in Database \n");
     echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");

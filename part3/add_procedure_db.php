@@ -44,12 +44,20 @@
     $sql = "insert into performed values (1,'$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
     $result = $connection->query($sql);
 
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Creatinine Level', '$creatinine');";
-    $result = $connection->query($sql);
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Protease Protein', '$protease');";
-    $result = $connection->query($sql);
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Red Cells', '$red_cells');";
-    $result = $connection->query($sql);
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Creatinine Level', :creatinine);";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':creatinine', $creatinine);
+    $exec->execute();
+
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Protease Protein', :protease);";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':protease', $protease);
+    $exec->execute();
+
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Red Cells', :red_cells);";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':red_cells', $red_cells);
+    $exec->execute();
 
     echo("New Blood Test Inserted in Databse \n");
 

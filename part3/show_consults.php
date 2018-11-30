@@ -9,7 +9,7 @@
   <?php
 
       session_start();
-      $VAT_owner = $_SESSION['VAT1'];
+      $VAT_owner = $_SESSION['VAT_client'];
       $animal_name = $_SESSION['animal_name'];
 
       include 'credentials.php';

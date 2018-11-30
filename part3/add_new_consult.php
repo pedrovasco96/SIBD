@@ -8,7 +8,7 @@
   <h1>Casa Açores Vet Clinic - Add consult</h1>
   <?php
       session_start();
-      $VAT_client = $_SESSION['VAT1'];
+      $VAT_client = $_SESSION['VAT_client'];
       $animal_name = $_SESSION['animal_name'];
       session_destroy();
       session_start();
