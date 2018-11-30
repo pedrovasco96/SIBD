@@ -12,27 +12,29 @@ set animal.age = new_age
 where animal.VAT_owner = NEW.VAT_owner and animal.name = NEW.name;
 end
 //
-/*year(CURRENT_TIMESTAMP) - (select a.birth_year from animal a
-                           where a.VAT = new.VAT_owner and a.name = new.name;)*/
 
--- 2 - Check if doctor is not assitant
-delimiter $$
-create trigger not_assist before insert on veterinary
+-- 2 - update animal's age after new scheduled consult
+delimiter //
+drop trigger if exists check_veterinary;
+create trigger check_veterinary before insert on assistant
 for each row
 begin
-  delete from assistant
-    where assistant.VAT = new.VAT;
-end$$
-delimiter;
+IF (SELECT * FROM veterinary WHERE veterinary.VAT=NEW.VAT IS NOT NULL) THEN 
+SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: New assistant is already a veterinary!';
+END IF;
+end
+//
 
-delimiter $$
-create trigger not_vet before insert on assistant
+delimiter //
+drop trigger if exists check_assistant;
+create trigger check_assistant before insert on veterinary
 for each row
 begin
-  delete from veterinary
-    where veterinary.VAT = new.VAT;
-end$$
-delimiter;
+IF (SELECT * FROM assistant WHERE assistant.VAT=NEW.VAT IS NOT NULL) THEN 
+SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: New veterinary is already an assistant!';
+END IF;
+end
+//
 
 -- 3 - Check if no individuals have the same phone number - AVISO!!
 delimiter $$
