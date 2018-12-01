@@ -40,14 +40,16 @@ END IF;
 end
 //
 
--- 3 - Check if no individuals have the same phone number - AVISO!!
+-- 3 - Check if no individuals have the same phone number
 delimiter //
 drop trigger if exists check_phone_number;
 create trigger check_phone_number before insert on phone_number
 for each row
 begin
-IF (SELECT * FROM phone_number WHERE phone_number.phone=NEW.phone IS NOT NULL) THEN
-SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: This phone number already exists!';
+declare repeated int;
+SELECT count(*) into repeated FROM phone_number WHERE phone_number.phone=NEW.phone;
+IF repeated <> 0 THEN
+SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'This phone number already exists!';
 END IF;
 end
 //
