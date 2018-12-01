@@ -2,7 +2,7 @@ delimiter //
 drop procedure if exists change_refs;
 
 create procedure change_refs ()
-  begin
+begin
   update produced_indicator
     set value=value/10
     where produced_indicator.indicator_name IN (select I.name
@@ -14,22 +14,4 @@ create procedure change_refs ()
   end
   //
 
-/*
-
-drop table if exists mod_indicators;
-create temporary table mod_indicators (name varchar(255));
-insert into mod_indicators select P.indicator_name
-  from produced_indicator P, indicator I
-  where I.units='milligrams' and I.name=P.indicator_name;
-
-  update indicator
-    set units = 'milligrams', reference_value = reference_value*10
-    where indicator.units='centigrams';
-  end
-
-  update produced_indicator
-    set value=value/10
-    where produced_indicator.indicator_name IN (select indicator.name
-      from indicator, mod_indicators
-      where indicator.name=mod_indicators.name);
-*/
+-- Call - call cange_refs();//
