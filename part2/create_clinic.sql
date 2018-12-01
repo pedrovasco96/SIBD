@@ -205,7 +205,7 @@ create table produced_indicator
    (num  int(10),
     name  varchar(255),
     VAT_owner  int(10),
-    date_timestamp timestamp,
+    date_timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
     indicator_name varchar(255),
     value numeric(10,4),
     primary key(name,VAT_owner,date_timestamp,num,indicator_name),
