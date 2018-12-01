@@ -1,4 +1,4 @@
-delimiter $$
+delimiter //
 drop procedure if exists change_refs;
 drop table if exists prod;
 create procedure change_refs ()
@@ -20,4 +20,5 @@ create procedure change_refs ()
     set units = 'centigrams', reference_value = reference_value/10
     where indicator.units='miligrams';
 
-  end $$
+  end
+//
