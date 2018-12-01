@@ -19,8 +19,10 @@ drop trigger if exists check_veterinary;
 create trigger check_veterinary before insert on assistant
 for each row
 begin
-IF (SELECT * FROM veterinary WHERE veterinary.VAT=NEW.VAT IS NOT NULL) THEN 
-SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: New assistant is already a veterinary!';
+declare vets int;
+SELECT count(*) into vets FROM veterinary v WHERE v.VAT=NEW.VAT;
+IF vets <> 0 THEN
+  SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'New assistant is already a veterinary!';
 END IF;
 end
 //
@@ -30,8 +32,10 @@ drop trigger if exists check_assistant;
 create trigger check_assistant before insert on veterinary
 for each row
 begin
-IF (SELECT * FROM assistant WHERE assistant.VAT=NEW.VAT IS NOT NULL) THEN 
-SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: New veterinary is already an assistant!';
+declare assistants int;
+SELECT count(*) into assistants FROM assistant WHERE assistant.VAT=NEW.VAT;
+IF assistants <> 0 THEN
+SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'New veterinary is already an assistant!';
 END IF;
 end
 //
@@ -42,7 +46,7 @@ drop trigger if exists check_phone_number;
 create trigger check_phone_number before insert on phone_number
 for each row
 begin
-IF (SELECT * FROM phone_number WHERE phone_number.phone=NEW.phone IS NOT NULL) THEN 
+IF (SELECT * FROM phone_number WHERE phone_number.phone=NEW.phone IS NOT NULL) THEN
 SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: This phone number already exists!';
 END IF;
 end
