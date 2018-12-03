@@ -231,11 +231,12 @@ insert into test_procedure values (1,'Dolite',     8521, '2016-10-31 12:30:00', 
 insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'urine');
 
 -- (num, name, VAT_owner, date_timestamp, indicator_name, value)
-insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Diabetes', 250);
-insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Diabetes', 350);
+insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Lymphocytes', 250);
+insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Monocytes', 350);
+insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'White Cells', 120);
 insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'White Cells', 160);
-insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Creatinine level', 0.8);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Protease Protein', 30);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Red Cells', 280);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Creatinine level', 1.2);
+insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Neutrophils', 100);
+insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Monocytes', 330);
+insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Lymphocytes', 280);
+insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Neutrophils', 120);
 insert into produced_indicator values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Ureia', 25);
