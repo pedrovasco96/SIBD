@@ -30,7 +30,7 @@
                 echo("</p>");
                 exit();
               }
-              $sql = "SELECT name1
+              $sql = "SELECT name1, name2
                       FROM generalization_species
                       WHERE name1 not in (select name2 from generalization_species);";
 
@@ -41,7 +41,7 @@
               if($num_a>0){
                   foreach($result as $row)
                   {
-                    echo '<option value='.$row["name"].'>'.$row["name"].'</option>';
+                    echo '<option value='.$row["name1"].'>'.$row["name2"]. ' - ' .$row["name1"].'</option>';
                   }
               }
             ?>
