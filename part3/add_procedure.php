@@ -44,9 +44,9 @@
               }
             ?>
       </select></p>
-      <p> Creatinine Level:<br> <input type="text" name="creatinine"></p>
-      <p> Protease Protein:<br> <input type="text" name="protease"></p>
-      <p> Red Cells:<br> <input type="text" name="red_cells"></p>
+      <p> Creatinine Level:<br> <input type="number" min="0" name="creatinine" required></p>
+      <p> Protease Protein:<br> <input type="number" min="0" name="protease" required></p>
+      <p> Red Cells:<br> <input type="number" min="0" name="red_cells" required></p>
       <input class='button' type="submit">
   </form>
   <?php
