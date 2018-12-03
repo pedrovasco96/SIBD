@@ -14,7 +14,7 @@
     $red_cells = $_REQUEST['red_cells'];
 
     include 'credentials.php';
-    
+
     try{
       $connection = new PDO($dsn, $user, $pass);
     }
@@ -44,19 +44,24 @@
     $sql = "insert into performed values (1,'$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
     $result = $connection->query($sql);
 
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Creatinine Level', :creatinine);";
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'White Blood Cell Count', :white_cells);";
     $exec = $connection->prepare($sql);
-    $exec->bindParam(':creatinine', $creatinine, PDO::PARAM_INT);
+    $exec->bindParam(':white_cells', $white_cells, PDO::PARAM_INT);
     $exec->execute();
 
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Protease Protein', :protease);";
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Number of Lymphocytes', :lymphocytes);";
     $exec = $connection->prepare($sql);
-    $exec->bindParam(':protease', $protease, PDO::PARAM_INT);
+    $exec->bindParam(':lympocytes', $lymphocytes, PDO::PARAM_INT);
     $exec->execute();
 
-    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Red Cells', :red_cells);";
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Number of Neutrophils', :neutrophils);";
     $exec = $connection->prepare($sql);
-    $exec->bindParam(':red_cells', $red_cells, PDO::PARAM_INT);
+    $exec->bindParam(':neutrophils', $neutrophils, PDO::PARAM_INT);
+    $exec->execute();
+
+    $sql = "insert into produced_indicator values (1,'$animal_name', '$VAT_owner', '$date_timestamp', 'Number of Monocytes', :monocytes);";
+    $exec = $connection->prepare($sql);
+    $exec->bindParam(':monocytes', $monocytes, PDO::PARAM_INT);
     $exec->execute();
 
     echo("New Blood Test Inserted in Databse \n");
