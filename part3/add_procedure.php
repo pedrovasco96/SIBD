@@ -28,8 +28,9 @@
                 echo("</p>");
                 exit();
               }
-              $sql = "SELECT VAT
-                      FROM assistant;";
+              $sql = "SELECT a.VAT, p.name
+                      FROM assistant a, person p
+                      WHERE a.VAT=p.VAT;";
 
               $result = $connection->query($sql);
 
@@ -38,7 +39,7 @@
               if($num_a>0){
                   foreach($result as $row)
                   {
-                    echo '<option value='.$row["VAT"].'>'.$row["VAT"].'</option>';
+                    echo '<option value='.$row["VAT"].'>'.$row["VAT"].' - '.$row["name"].'</option>';
                   }
               }
             ?>
