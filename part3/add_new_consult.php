@@ -16,11 +16,11 @@
       $_SESSION['animal_name'] = $animal_name;
   ?>
   <form action="add_new_consult_db.php" method="post">
-      <p> S: <input type="text" name="s" placeholder="Subjective observation..."></p>
-      <p> O: <input type="text" name="o" placeholder="Objective observation..."></p>
+      <p> S: <input type="text" name="s" placeholder="Subjective observation..." required></p>
+      <p> O: <input type="text" name="o" placeholder="Objective observation..." required></p>
       <p> A: <input type="text" name="a" placeholder="Assessment..."></p>
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
-      <p> Weight: <input type="text" name="weight" placeholder="Weight (Kg)..."></p>
+      <p> Weight: <input type="number" min="0" name="weight" placeholder="Weight (Kg)..." required></p>
       <p> Veterinary's VAT:
       <select name="VAT_vet">
           <?php
