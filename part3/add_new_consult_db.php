@@ -57,7 +57,7 @@
     $exec->bindParam(':a', $a);
     $exec->bindParam(':p', $p);
     $exec->bindParam(':VAT_vet', $VAT_vet);
-    $exec->bindParam(':weight', $weight);
+    $exec->bindParam(':weight', $weight, PDO::PARAM_INT);
     $exec->execute();
 
     echo("New Consult Inserted in Databse \n");
