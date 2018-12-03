@@ -16,7 +16,36 @@
       $_SESSION['animal_name'] = $animal_name;
   ?>
   <form action="insert_animal_db.php" method="post">
-      <p> Species Name:<br> <input type="text" name="species_name"></p>
+      <p> Species name:
+      <select name="species_name">
+          <?php
+              include 'credentials.php';
+
+              try{
+                $connection = new PDO($dsn, $user, $pass);
+              }
+              catch(PDOException $exception){
+                echo("<p>Error: ");
+                echo($exception->getMessage());
+                echo("</p>");
+                exit();
+              }
+              $sql = "SELECT name1
+                      FROM generalization_species
+                      WHERE name1 not in (select name2 from generalization_species);";
+
+              $result = $connection->query($sql);
+
+              $num_a = $result->rowCount();
+
+              if($num_a>0){
+                  foreach($result as $row)
+                  {
+                    echo '<option value='.$row["name"].'>'.$row["name"].'</option>';
+                  }
+              }
+            ?>
+      </select></p>
       <p> Colour:<br> <input type="text" name="colour"></p>
       <p> Gender:<br> <select name="gender">
           <option value="M">M</option>
