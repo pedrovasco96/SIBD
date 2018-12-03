@@ -1,10 +1,10 @@
 <?php
 
 //JOAO
-/*$host = "db.ist.utl.pt";
+$host = "db.ist.utl.pt";
 $user = "ist181843";
 $pass = "bsaa3007";
-$dsn = "mysql:host=$host;dbname=$user";*/
+$dsn = "mysql:host=$host;dbname=$user";
 
 
 //PEDRO
@@ -14,10 +14,10 @@ $pass="";	// <== paste here the password assigned by mysql_reset
 $dbname = "vet2";	// Do nothing here, your database has the same name as your username.
 $dsn = "mysql:host=$host;dbname=$dbname";*/
 
-$host = "db.ist.utl.pt";
+/*$host = "db.ist.utl.pt";
 $user = "ist181880";
 $pass = "mull6259";
-$dsn = "mysql:host=$host;dbname=$user";
+$dsn = "mysql:host=$host;dbname=$user";*/
 
 //SARA
 /*$host = "db.ist.utl.pt";
