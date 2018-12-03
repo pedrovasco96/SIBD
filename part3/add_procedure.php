@@ -44,9 +44,10 @@
               }
             ?>
       </select></p>
-      <p> Creatinine Level:<br> <input type="number" min="0" name="creatinine" required></p>
-      <p> Protease Protein:<br> <input type="number" min="0" name="protease" required></p>
-      <p> Red Cells:<br> <input type="number" min="0" name="red_cells" required></p>
+      <p> White Blood Cells Count:<br> <input type="number" min="0" name="white_cells" required></p>
+      <p> Number of Lymphocytes:<br> <input type="number" min="0" name="lymphocytes" required></p>
+      <p> Number of Neutrophils:<br> <input type="number" min="0" name="neutrophils" required></p>
+      <p> Number of Monocytes:<br> <input type="number" min="0" name="monocytes" required></p>
       <input class='button' type="submit">
   </form>
   <?php
