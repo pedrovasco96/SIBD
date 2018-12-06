@@ -39,6 +39,7 @@
           {
               echo("<tr><td>");
               echo($row["VAT"]);
+
               echo("</td><td>");
               echo($row["name"]);
               echo("</td><td>");
@@ -71,7 +72,8 @@
           foreach($exec as $row)
           {
               echo("<tr><td>");
-              echo($row["VAT_owner"]);
+              $v_owner = $row["VAT_owner"];
+              echo "<a href='show_consults.php'>$v_owner</a>";
               echo("</td><td>");
               $name=$row["name"];
               echo "<a href='show_consults.php'>$name</a>";

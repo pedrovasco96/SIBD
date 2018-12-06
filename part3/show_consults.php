@@ -9,7 +9,7 @@
   <?php
 
       session_start();
-      $VAT_owner = $_SESSION['VAT_client'];
+      $VAT_owner = $_SESSION['VAT_owner'];
       $animal_name = $_SESSION['animal_name'];
 
       include 'credentials.php';
@@ -37,8 +37,8 @@
           echo("<tr><td>Date and Time</td><td>VAT Vet</td></tr>\n");
           foreach ($result as $row) {
               echo("<tr><td>");
-              $name = $row["date_timestamp"];
-              echo "<a href= \"show_detailed_consults.php?date_timestamp=$name&animal_name=$animal_name\"> $name</a>";
+              $date = $row["date_timestamp"];
+              echo "<a href= \"show_detailed_consults.php?date_timestamp=$date&animal_name=$animal_name&VAT_owner=$VAT_owner\"> $date</a>";
               #echo "<a href='show_detailed_consults.php'>$name</a>";
               echo("</td><td>");
               echo($row["VAT_vet"]);

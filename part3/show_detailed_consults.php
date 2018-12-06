@@ -10,6 +10,7 @@
 
       $date_timestamp = $_GET['date_timestamp'];
       $animal_name = $_GET['animal_name'];
+      $VAT_owner = $_GET['VAT_owner'];
 
       include 'credentials.php';
 
@@ -24,7 +25,7 @@
       }
 
       $sql = "SELECT A.age, A.gender, A.colour, A.species_name FROM animal A
-                  WHERE A.name='$animal_name'";
+                  WHERE A.name='$animal_name' AND A.VAT_owner='$VAT_owner'";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -50,7 +51,7 @@
       }
 
       $sql = "SELECT * FROM consult C
-                  WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name'";
+                  WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name' AND C.VAT_owner='$VAT_owner'";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -88,7 +89,7 @@
       }
 
       $sql = "SELECT D.code, D.name FROM consult_diagnosis D
-                      WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name'";
+                      WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name' AND D.VAT_owner='$VAT_owner'";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -111,7 +112,7 @@
       }
 
       $sql = "SELECT * FROM prescription P
-                      WHERE P.date_timestamp='$date_timestamp' AND P.name='$animal_name'";
+                      WHERE P.date_timestamp='$date_timestamp' AND P.name='$animal_name' AND P.VAT_owner='$VAT_owner'";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
