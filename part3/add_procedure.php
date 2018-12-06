@@ -15,7 +15,7 @@
   ?>
   <form action="add_procedure_db.php" method="post">
       <p> Assistant's VAT:<br>
-      <select name="vet_vat">
+      <select name="VAT_assistant">
           <?php
               include 'credentials.php';
 
