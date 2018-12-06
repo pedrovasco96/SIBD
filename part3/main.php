@@ -93,7 +93,7 @@
       // third query
       $query = "SELECT * FROM consult C, animal A, person P
                   WHERE P.VAT=A.VAT_owner AND (P.name LIKE :animal_owner) AND A.name= :animal_name
-                  AND C.VAT_owner=A.VAT_owner AND C.VAT_client = :vat_client;";
+                  AND C.VAT_owner=A.VAT_owner AND C.name = :animal_name AND C.VAT_client = :vat_client;";
       $exec = $connection->prepare($query);
       $a_owner="%".$animal_owner."%";
       $exec->bindParam(':vat_client', $VAT_client, PDO::PARAM_INT);
@@ -106,8 +106,8 @@
 
       if($num_consult>0){
           echo("<table border=\"1\">\n");
-          echo("<tr><th>VAT Owner</th><th>Name</th><th>Date/Time</th><th>s</th><th>o</th><th>a</th><th>p</th><th>VAT Client</th><th>VAT Vet</th><th>weight</th></tr>\n");
-          foreach($exec as $row)
+          echo("<tr><th>VAT Owner</th><th>Owner name</th><th>Date/Time</th><th>s</th><th>o</th><th>a</th><th>p</th><th>VAT Client</th><th>VAT Vet</th><th>weight</th></tr>\n");
+		  foreach($exec as $row)
           {
               echo("<tr><td>");
               echo($row["VAT_owner"]);
