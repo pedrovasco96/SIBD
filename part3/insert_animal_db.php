@@ -1,6 +1,7 @@
 <html><meta charset="UTF-8">
 <head>
-    <title>Casa Açores Vet Clinic</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Detailed consult info</title>
 </head>
 <body>
 <?php
@@ -14,7 +15,7 @@
     $birth_year = $_REQUEST['birth_year'];
 
     include 'credentials.php';
-    
+
     try{
       $connection = new PDO($dsn, $user, $pass);
     }
@@ -35,7 +36,7 @@
     $exec->execute();
 
     echo("New Animal Inserted in Database \n");
-    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+    echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
 ?>
