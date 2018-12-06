@@ -39,7 +39,6 @@
           {
               echo("<tr><td>");
               echo($row["VAT"]);
-
               echo("</td><td>");
               echo($row["name"]);
               echo("</td><td>");
@@ -73,10 +72,10 @@
           {
               echo("<tr><td>");
               $v_owner = $row["VAT_owner"];
-              echo "<a href='show_consults.php'>$v_owner</a>";
+              echo($row["VAT_owner"]);
               echo("</td><td>");
               $name=$row["name"];
-              echo "<a href='show_consults.php'>$name</a>";
+              echo "<a href= \"show_consults.php?VAT_owner=$v_owner\">$name</a>";
               echo("</td><td>");
               echo($row["species_name"]);
               echo("</td><td>\n");

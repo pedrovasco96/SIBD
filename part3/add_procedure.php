@@ -9,9 +9,12 @@
   <?php
       $date_timestamp = $_GET['date_timestamp'];
       $animal_name = $_GET['animal_name'];
+      $VAT_owner = $_GET['VAT_owner'];
+
       session_start();
       $_SESSION['animal_name'] = $animal_name;
       $_SESSION['date_timestamp'] = $date_timestamp;
+      $_SESSION['VAT_owner'] = $VAT_owner;
   ?>
   <form action="add_procedure_db.php" method="post">
       <p> Assistant's VAT:<br>

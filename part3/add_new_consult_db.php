@@ -1,8 +1,13 @@
 <html><meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Detailed consult info</title>
+</head>
 <body>
 <?php
 
     session_start();
+    $VAT_owner = $_SESSION['VAT_owner'];
     $VAT_client = $_SESSION['VAT_client'];
     $animal_name = $_SESSION['animal_name'];
     $s = $_REQUEST['s'];
@@ -38,17 +43,6 @@
       exit();
     }
 
-    $sql = "SELECT A.VAT_owner FROM animal A
-            WHERE A.name=:animal_name";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':animal_name', $animal_name);
-    $exec->execute();
-
-    foreach($exec as $row)
-    {
-        $VAT_owner=$row["VAT_owner"];
-    }
-
     $sql = "insert into consult values ('$animal_name', '$VAT_owner', '$date_timestamp', :s, :o, :a, :p,
             '$VAT_client', :VAT_vet, :weight);";
     $exec = $connection->prepare($sql);
@@ -62,7 +56,7 @@
 
     echo("New Consult Inserted in Databse \n");
 
-    echo("<button onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
+    echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
 ?>
