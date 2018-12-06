@@ -205,41 +205,41 @@ insert into indicator values ('Monocytes', 300, 'milligrams', 'Amount of monocyt
 insert into indicator values ('Neutrophils', 300, 'milligrams', 'Amount of neutrophils in the blood');
 
 -- (num, name, VAT_owner, date_timestamp, description)
-insert into operation values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Analysis');
-insert into operation values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Toraxic Radiography');
-insert into operation values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Analysis');
-insert into operation values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Toraxic Radiography');
-insert into operation values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Analysis');
-insert into operation values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
-insert into operation values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
+insert into operation values (default, 'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Analysis');
+insert into operation values (default, 'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Toraxic Radiography');
+insert into operation values (default, 'Panacuda',   6501, '2016-10-25 10:30:00', 'Analysis');
+insert into operation values (default, 'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Toraxic Radiography');
+insert into operation values (default, 'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Analysis');
+insert into operation values (default, 'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
+insert into operation values (default, 'Dolite',     8521, '2016-10-31 12:30:00', 'Analysis');
 
 -- (num, name, VAT_owner, date_timestamp, VAT_assistant)
-insert into performed values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
 insert into performed values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
-insert into performed values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 4909);
-insert into performed values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
-insert into performed values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
-insert into performed values (1,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
-insert into performed values (3,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
+insert into performed values (4,'Snaiguxo',   1025, '2016-10-25 08:30:00', 4909);
+insert into performed values (6,'Panacuda',   6501, '2016-10-25 10:30:00', 4909);
+insert into performed values (8,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
+insert into performed values (10,'Squinnaxi',  6261, '2017-07-11 17:15:00', 1833);
+insert into performed values (12,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
+insert into performed values (14,'Dolite',     8521, '2016-10-31 12:30:00', 1833);
 
 -- (num, name, VAT_owner, date_timestamp, file)
-insert into radiography values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'rad/1025/20161025/');
-insert into radiography values (2,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'rad/2438/20170711/');
+insert into radiography values (4,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'rad/1025/20161025/');
+insert into radiography values (8,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'rad/2438/20170711/');
 
 -- (num,name, VAT_owner, date_timestamp, type)
-insert into test_procedure values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'blood');
-insert into test_procedure values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'blood');
-insert into test_procedure values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'blood');
-insert into test_procedure values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'blood');
-insert into test_procedure values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'urine');
+insert into test_procedure values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'blood');
+insert into test_procedure values (6,'Panacuda',   6501, '2016-10-25 10:30:00', 'blood');
+insert into test_procedure values (10,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'blood');
+insert into test_procedure values (12,'Dolite',     8521, '2016-10-31 12:30:00', 'blood');
+insert into test_procedure values (14,'Dolite',     8521, '2016-10-31 12:30:00', 'urine');
 
 -- (num, name, VAT_owner, date_timestamp, indicator_name, value)
-insert into produced_indicator values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Lymphocytes', 250);
-insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'Monocytes', 350);
-insert into produced_indicator values (1,'Panacuda',   6501, '2016-10-25 10:30:00', 'White Cells', 120);
-insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'White Cells', 160);
-insert into produced_indicator values (1,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Neutrophils', 100);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Monocytes', 330);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Lymphocytes', 280);
-insert into produced_indicator values (1,'Dolite',     8521, '2016-10-31 12:30:00', 'Neutrophils', 120);
-insert into produced_indicator values (3,'Dolite',     8521, '2016-10-31 12:30:00', 'Ureia', 25);
+insert into produced_indicator values (2,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Lymphocytes', 250);
+insert into produced_indicator values (6,'Panacuda',   6501, '2016-10-25 10:30:00', 'Monocytes', 350);
+insert into produced_indicator values (6,'Panacuda',   6501, '2016-10-25 10:30:00', 'White Cells', 120);
+insert into produced_indicator values (10,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'White Cells', 160);
+insert into produced_indicator values (10,'Squinnaxi',  6261, '2017-07-11 17:15:00', 'Neutrophils', 100);
+insert into produced_indicator values (12,'Dolite',     8521, '2016-10-31 12:30:00', 'Monocytes', 330);
+insert into produced_indicator values (12,'Dolite',     8521, '2016-10-31 12:30:00', 'Lymphocytes', 280);
+insert into produced_indicator values (12,'Dolite',     8521, '2016-10-31 12:30:00', 'Neutrophils', 120);
+insert into produced_indicator values (14,'Dolite',     8521, '2016-10-31 12:30:00', 'Ureia', 25);
