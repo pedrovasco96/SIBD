@@ -200,6 +200,9 @@ insert into indicator values ('Protease Protein', 10, 'milligrams', 'Infection p
 insert into indicator values ('White cells', 120, 'units', 'Amount of white cells in blood');
 insert into indicator values ('Ureia', 20, 'milligrams', 'Amount of ureia in urine');
 insert into indicator values ('Creatinine level', 0.8, 'milligrams', 'Amount of creatinine in the blood');
+insert into indicator values ('Lymphocytes', 200, 'milligrams', 'Amount of lymphocytes in the blood');
+insert into indicator values ('Monocytes', 300, 'milligrams', 'Amount of monocytes in the blood');
+insert into indicator values ('Neutrophils', 300, 'milligrams', 'Amount of neutrophils in the blood');
 
 -- (num, name, VAT_owner, date_timestamp, description)
 insert into operation values (1,'Snaiguxo',   1025, '2016-10-25 08:30:00', 'Analysis');
