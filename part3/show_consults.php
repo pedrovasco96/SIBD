@@ -7,11 +7,10 @@
 <div class='content'>
   <h1>Casa Açores Vet Clinic - Results for consult search</h1>
   <?php
-
       session_start();
-      $VAT_owner = $_SESSION['VAT_owner'];
+      $VAT_owner = $_GET['VAT_owner'];
+      $_SESSION['VAT_owner'] = $VAT_owner;
       $animal_name = $_SESSION['animal_name'];
-
       include 'credentials.php';
 
       try{
@@ -25,12 +24,10 @@
       }
 
       $sql = "SELECT C.date_timestamp, C.VAT_vet FROM consult C
-              WHERE C.name='$animal_name'";
+              WHERE C.name='$animal_name' and C.VAT_owner = $VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
-
-      //echo("<p>$num consults found</p>\n");
 
       if($num>0) {
           echo("<table border=\"1\">\n");
@@ -39,7 +36,6 @@
               echo("<tr><td>");
               $date = $row["date_timestamp"];
               echo "<a href= \"show_detailed_consults.php?date_timestamp=$date&animal_name=$animal_name&VAT_owner=$VAT_owner\"> $date</a>";
-              #echo "<a href='show_detailed_consults.php'>$name</a>";
               echo("</td><td>");
               echo($row["VAT_vet"]);
               echo("</td></tr>\n");

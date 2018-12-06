@@ -160,55 +160,55 @@ create table indicator
     primary key(name));
 
 create table operation
-   (num  int(10),
+   (num  int NOT NULL AUTO_INCREMENT,
     name  varchar(255),
     VAT_owner  int(10),
     date_timestamp timestamp,
     description text,
-    primary key(name,VAT_owner,date_timestamp,num),
+    primary key(num,name,VAT_owner,date_timestamp),
     foreign key(name,VAT_owner,date_timestamp) references consult(name,VAT_owner,date_timestamp) on delete cascade on update cascade
   );
 -- check RI
 
 create table performed
-   (num  int(10),
+   (num  int,
     name  varchar(255),
     VAT_owner  int(10),
     date_timestamp timestamp,
     VAT_assistant int(10),
-    primary key(name,VAT_owner,date_timestamp,num,VAT_assistant),
-    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num) on delete cascade on update cascade,
+    primary key(num, name,VAT_owner,date_timestamp,VAT_assistant),
+    foreign key(num,name,VAT_owner,date_timestamp) references operation(num,name,VAT_owner,date_timestamp) on delete cascade on update cascade,
     foreign key(VAT_assistant) references assistant(VAT) on delete cascade on update cascade
   );
 
 create table radiography
-   (num  int(10),
+   (num  int,
     name  varchar(255),
     VAT_owner  int(10),
     date_timestamp timestamp,
     file text,
-    primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num) on delete cascade on update cascade
+    primary key(num,name,VAT_owner,date_timestamp),
+    foreign key(num,name,VAT_owner,date_timestamp) references operation(num,name,VAT_owner,date_timestamp) on delete cascade on update cascade
   );
 
 create table test_procedure
-   (num  int(10),
+   (num  int,
     name  varchar(255),
     VAT_owner  int(10),
     date_timestamp timestamp,
     type enum('blood','urine'),
-    primary key(name,VAT_owner,date_timestamp,num),
-    foreign key(name,VAT_owner,date_timestamp,num) references operation(name,VAT_owner,date_timestamp,num) on delete cascade on update cascade
+    primary key(num, name,VAT_owner,date_timestamp),
+    foreign key(num,name,VAT_owner,date_timestamp) references operation(num,name,VAT_owner,date_timestamp) on delete cascade on update cascade
   );
 
 create table produced_indicator
-   (num  int(10),
+   (num  int,
     name  varchar(255),
     VAT_owner  int(10),
     date_timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
     indicator_name varchar(255),
     value numeric(10,4),
-    primary key(name,VAT_owner,date_timestamp,num,indicator_name),
-    foreign key(name,VAT_owner,date_timestamp,num) references test_procedure(name,VAT_owner,date_timestamp,num) on delete cascade on update cascade,
+    primary key(num,name,VAT_owner,date_timestamp,indicator_name),
+    foreign key(num,name,VAT_owner,date_timestamp) references test_procedure(num,name,VAT_owner,date_timestamp) on delete cascade on update cascade,
     foreign key(indicator_name) references indicator(name)
   );

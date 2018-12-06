@@ -9,11 +9,13 @@
   <?php
       session_start();
       $VAT_client = $_SESSION['VAT_client'];
+      $VAT_owner = $_SESSION['VAT_owner'];
       $animal_name = $_SESSION['animal_name'];
       session_destroy();
       session_start();
       $_SESSION['VAT_client'] = $VAT_client;
       $_SESSION['animal_name'] = $animal_name;
+      $_SESSION['VAT_owner'] = $VAT_owner;
   ?>
   <form action="add_new_consult_db.php" method="post">
       <p> S: <input type="text" name="s" placeholder="Subjective observation..." required></p>

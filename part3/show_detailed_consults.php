@@ -51,7 +51,7 @@
       }
 
       $sql = "SELECT * FROM consult C
-                  WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name' AND C.VAT_owner='$VAT_owner'";
+                  WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name' AND C.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -89,7 +89,7 @@
       }
 
       $sql = "SELECT D.code, D.name FROM consult_diagnosis D
-                      WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name' AND D.VAT_owner='$VAT_owner'";
+                      WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name' AND D.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -112,7 +112,7 @@
       }
 
       $sql = "SELECT * FROM prescription P
-                      WHERE P.date_timestamp='$date_timestamp' AND P.name='$animal_name' AND P.VAT_owner='$VAT_owner'";
+                      WHERE P.date_timestamp='$date_timestamp' AND P.name='$animal_name' AND P.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -146,7 +146,7 @@
       }
 
       echo("<p>");
-      echo "<a class='button' href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name\"> Add Blood Test To This Consult </a> <p>";
+      echo "<a class='button' href= \"add_procedure.php?flag=1&date_timestamp=$date_timestamp&animal_name=$animal_name&VAT_owner=$VAT_owner\"> Add Blood Test To This Consult </a> <p>";
       echo("<button class='button' onclick=document.location.href=\"add_new_consult.php?flag=1\">Add New Consult</button>");
       echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
   ?>
