@@ -6,7 +6,7 @@ create function total_consults(a_name varchar(255), year int)
     declare total integer;
     select count(*) into total
     from consult C
-    where a_name = C.namesd and year = year(C.date_timestamp);
+    where a_name = C.names and year = year(C.date_timestamp);
     return total;
   end
 //
