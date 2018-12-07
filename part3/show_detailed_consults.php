@@ -24,7 +24,7 @@
         exit();
       }
 
-      $sql = "SELECT A.age, A.gender, A.colour, A.species_name FROM animal A
+      $sql = "SELECT A.VAT_owner, A.name, A.age, A.gender, A.colour, A.species_name FROM animal A
                   WHERE A.name='$animal_name' AND A.VAT_owner='$VAT_owner'";
 
       $result = $connection->query($sql);
@@ -34,10 +34,14 @@
 
       if($num>0) {
           echo("<table border=\"1\">\n");
-          echo("<tr><td>Age</td><td>Gender</td><td>Colour</td><td>Specie</td></tr>\n");
+          echo("<tr><td>Owner</td><td>Name</td><td>Age</td><td>Gender</td><td>Colour</td><td>Specie</td></tr>\n");
           foreach($result as $row)
           {
               echo("<tr><td>");
+              echo($row["VAT_owner"]);
+              echo("</td><td>");
+              echo($row["name"]);
+              echo("</td><td>");
               echo($row["age"]);
               echo("</td><td>");
               echo($row["gender"]);
@@ -50,7 +54,11 @@
           echo("</table>\n");
       }
 
-      $sql = "SELECT * FROM consult C
+      $sql = "SELECT C.date_timestamp,
+                     C.s, C.o, C.a, C.p,
+                     C.VAT_client,
+                     C.VAT_vet,
+                     C.weight FROM consult C
                   WHERE C.date_timestamp='$date_timestamp' AND C.name='$animal_name' AND C.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
@@ -60,14 +68,10 @@
       echo("<p>Consult info:</p>\n");
       if($num>0) {
           echo("<table border=\"1\">\n");
-          echo("<tr><td>VAT Owner</td><td>Name</td><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>Weight</td></tr>\n");
+          echo("<tr><td>Date/Time</td><td>s</td><td>o</td><td>a</td><td>p</td><td>VAT Client</td><td>VAT Vet</td><td>Weight</td></tr>\n");
           foreach($result as $row)
           {
               echo("<tr><td>");
-              echo($row["VAT_owner"]);
-              echo("</td><td>");
-              echo($row["name"]);
-              echo("</td><td>");
               echo($row["date_timestamp"]);
               echo("</td><td>\n");
               echo($row["s"]);
@@ -88,8 +92,8 @@
           echo("</table>\n");
       }
 
-      $sql = "SELECT D.code, D.name FROM consult_diagnosis D
-                      WHERE D.date_timestamp='$date_timestamp' AND D.name='$animal_name' AND D.VAT_owner=$VAT_owner";
+      $sql = "SELECT D.code, C.name FROM consult_diagnosis D, diagnosis_code C
+                      WHERE D.code = C.code AND D.date_timestamp='$date_timestamp' AND D.name='$animal_name' AND D.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -111,8 +115,8 @@
           echo("</table>\n");
       }
 
-      $sql = "SELECT * FROM prescription P
-                      WHERE P.date_timestamp='$date_timestamp' AND P.name='$animal_name' AND P.VAT_owner=$VAT_owner";
+      $sql = "SELECT C.name, P.med_name, P.dosage, P.lab, P.regime FROM prescription P, diagnosis_code C
+                      WHERE C.code = P.code AND P.date_timestamp='$date_timestamp' AND P.name='$animal_name' AND P.VAT_owner=$VAT_owner";
 
       $result = $connection->query($sql);
       $num = $result->rowCount();
@@ -121,17 +125,11 @@
 
       if($num>0) {
           echo("<table border=\"1\">\n");
-          echo("<tr><td>Code</td><td>Name</td><td>VAT Owner</td><td>Date/Time</td><td>Drug Name</td><td>Dosage</td><td>Lab</td><td>Regime</td></tr>\n");
+          echo("<tr><td>Diagnosis</td><td>Drug Name</td><td>Dosage</td><td>Lab</td><td>Regime</td></tr>\n");
           foreach($result as $row)
           {
               echo("<tr><td>");
-              echo($row["code"]);
-              echo("</td><td>");
               echo($row["name"]);
-              echo("</td><td>");
-              echo($row["VAT_owner"]);
-              echo("</td><td>\n");
-              echo($row["date_timestamp"]);
               echo("</td><td>\n");
               echo($row["med_name"]);
               echo("</td><td>\n");
@@ -141,6 +139,28 @@
               echo("</td><td>\n");
               echo($row["regime"]);
               echo("</td></tr>\n");
+          }
+          echo("</table>\n");
+      }
+
+
+      //SELECT ALL OPERATIONS FOR THE CONSULT
+      $sql = "SELECT O.num, O.description FROM operation O
+                      WHERE O.date_timestamp='$date_timestamp' AND O.name='$animal_name' AND O.VAT_owner=$VAT_owner";
+
+      $result = $connection->query($sql);
+      $num = $result->rowCount();
+      if($num>0) {
+          echo("<p>Procedures associated with this consult (click on the code for more information)</p>\n");
+          echo("<table border=\"1\">\n");
+          echo("<tr><td>ID</td><td>Description</td></tr>\n");
+          foreach ($result as $row) {
+            echo("<tr><td>");
+            $op_code = $row["num"];
+            echo "<a href= \"show_detailed_procedures.php?date_timestamp=$date_timestamp&animal_name=$animal_name&VAT_owner=$VAT_owner&op_code=$op_code\"> $op_code</a>";
+            echo("</td><td>\n");
+            echo($row["description"]);
+            echo("</td></tr>\n");
           }
           echo("</table>\n");
       }
