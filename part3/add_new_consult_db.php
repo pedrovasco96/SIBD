@@ -17,7 +17,7 @@
     $a = $_REQUEST['a'];
     $p = $_REQUEST['p'];
     $weight = $_REQUEST['weight'];
-    $code = $_REQUEST['code'];
+    $codes = $_REQUEST['code'];
     $VAT_vet = $_REQUEST['VAT_vet'];
     $date_timestamp=date("Y-m-d H:i:sa");
 
@@ -57,10 +57,11 @@
     $exec->bindParam(':weight', $weight, PDO::PARAM_INT);
     $exec->execute();
 
-    if($code > '0'){
-      $sql = "insert into consult_diagnosis values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
-      $exec = $connection->prepare($sql);
-      $exec->bindParam(':code', $code, PDO::PARAM_INT);
+
+    $sql = "insert into consult_diagnosis values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
+    $exec = $connection->prepare($sql);
+    foreach($codes as $row){
+      $exec->bindParam(':code', $row);
       $exec->execute();
     }
 

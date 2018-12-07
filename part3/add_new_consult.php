@@ -24,7 +24,7 @@
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
       <p> Weight: <input type="number" min="0" name="weight" placeholder="Weight (Kg)..." required></p>
       <p> Diagnosis Code:
-      <select name="code">
+      <select multiple name="code[]">
           <?php
               include 'credentials.php';
 
@@ -48,7 +48,7 @@
                   echo '<option value="0">No diagnosis</option>';
                   foreach($result as $row)
                   {
-                    echo '<option value='.$row["code"].'>'.$row["name"].'</option>';
+                    echo '<option value='.$row["code"].'>'.$row["code"].' - '.$row["name"].'</option>';
                   }
               }
             ?>
