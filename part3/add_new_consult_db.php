@@ -17,6 +17,7 @@
     $a = $_REQUEST['a'];
     $p = $_REQUEST['p'];
     $weight = $_REQUEST['weight'];
+    $code = $_REQUEST['code'];
     $VAT_vet = $_REQUEST['VAT_vet'];
     $date_timestamp=date("Y-m-d H:i:sa");
 
@@ -55,6 +56,13 @@
     $exec->bindParam(':VAT_vet', $VAT_vet);
     $exec->bindParam(':weight', $weight, PDO::PARAM_INT);
     $exec->execute();
+
+    if($code){
+      $sql = "insert into consult values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
+      $exec = $connection->prepare($sql);
+      $exec->bindParam(':code', $code);
+      $exec->execute();
+    }
 
     echo("<p>New Consult Inserted in Databse</p>");
 
