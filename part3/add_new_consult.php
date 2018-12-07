@@ -23,7 +23,7 @@
       <p> A: <input type="text" name="a" placeholder="Assessment..."></p>
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
       <p> Weight: <input type="number" min="0" name="weight" placeholder="Weight (Kg)..." required></p>
-      <p> Diagnosis Code:
+      <p> Diagnosis Code: <br>
       <select multiple name="code[]">
           <?php
               include 'credentials.php';
