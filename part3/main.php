@@ -91,6 +91,24 @@
           echo("</table>\n");
       }
 
+      $sql = "SELECT *  FROM animal A, person P
+                        WHERE P.VAT=A.VAT_owner AND P.VAT= :vat_client AND A.name= :animal_name;";
+      $exec = $connection->prepare($sql);
+      $exec->bindParam(':animal_name', $animal_name);
+      $exec->bindParam(':vat_client', $VAT_client, PDO::PARAM_INT);
+      $exec->execute();
+      $num_animal_client = $exec->rowCount();
+
+      if ($num_animal <= 0){
+        if($num_animal_client >= 0){
+          echo("<p> There is already one animal registered with the name ");
+          echo($animal_name);
+          echo(" for the client ");
+          echo($VAT_client);
+          echo(". Try inserting the name above in the field 'Owner's name. </p>");
+        }
+      }
+
       // third query
       $query = "SELECT * FROM consult C, animal A, person P
                   WHERE P.VAT=A.VAT_owner AND (P.name LIKE :animal_owner) AND A.name= :animal_name
@@ -137,7 +155,7 @@
 
       $connection = null;
 
-      if($num_animal <= 0 && $num_client > 0){
+      if($num_animal_client <= 0 && $num_client > 0){
 
           echo("<button class='button' onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
       }

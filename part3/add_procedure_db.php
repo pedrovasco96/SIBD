@@ -1,7 +1,7 @@
 <html><meta charset="UTF-8">
 <head>
     <link rel="stylesheet" href="styles.css">
-    <title>Detailed consult info</title>
+    <title>Add procedure</title>
 </head>
 <body>
 <div class='content'>

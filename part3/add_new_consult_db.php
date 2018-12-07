@@ -4,6 +4,8 @@
     <title>Detailed consult info</title>
 </head>
 <body>
+<div class='content'>
+  <h1>Casa Açores Vet Clinic - Add consult</h1>
 <?php
 
     session_start();
@@ -54,11 +56,12 @@
     $exec->bindParam(':weight', $weight, PDO::PARAM_INT);
     $exec->execute();
 
-    echo("New Consult Inserted in Databse \n");
+    echo("<p>New Consult Inserted in Databse</p>");
 
     echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
 ?>
+</div>
 </body>
 </html>
