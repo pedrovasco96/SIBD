@@ -1,9 +1,11 @@
 <html><meta charset="UTF-8">
 <head>
     <link rel="stylesheet" href="styles.css">
-    <title>Detailed consult info</title>
+    <title>Insert Animal</title>
 </head>
 <body>
+<div class='content'>
+  <h1>Casa Açores Vet Clinic - Insert Animal</h1>
 <?php
 
     session_start();
@@ -40,5 +42,6 @@
 
     $connection = null;
 ?>
+</div>
 </body>
 </html>

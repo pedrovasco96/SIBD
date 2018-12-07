@@ -4,6 +4,8 @@
     <title>Detailed consult info</title>
 </head>
 <body>
+<div class='content'>
+  <h1>Casa Açores Vet Clinic - Add consult</h1>
 <?php
 
     session_start();
@@ -60,5 +62,6 @@
 
     $connection = null;
 ?>
+</div>
 </body>
 </html>
