@@ -20,31 +20,6 @@
     $flag=0;
 
     include 'credentials.php';
-    /*
-    echo("<p> VAT_owner = ");
-    echo($VAT_owner);
-    echo("</p>");
-    echo("<p>date_timestamp = ");
-    echo($date_timestamp);
-    echo("</p>");
-    echo("<p> animal_name = ");
-    echo($animal_name);
-    echo("</p>");
-    echo("<p> VAT_assistant = ");
-    echo($VAT_assistant);
-    echo("</p>");
-    echo("<p> white_cells = ");
-    echo($white_cells);
-    echo("</p>");
-    echo("<p> lymphocytes = ");
-    echo($lymphocytes);
-    echo("</p>");
-    echo("<p> neutrophils = ");
-    echo($neutrophils);
-    echo("</p>");
-    echo("<p> monocytes = ");
-    echo($monocytes);
-    echo("</p>");*/
 
     try{
       $connection = new PDO($dsn, $user, $pass);
@@ -60,81 +35,103 @@
 
     $sql = "insert into operation values ('default','$animal_name', '$VAT_owner', '$date_timestamp', 'Analysis');";
     $result = $connection->query($sql);
-    /*if(!$result)
+    if($result===FALSE)
     {
+        echo("<p>Pila: ");
         $flag=1;
         $connection->rollback();
-    }*/
-    $sql = "SELECT O.num FROM operation O
-            WHERE O.name='$animal_name' and O.VAT_owner = $VAT_owner and O.date_timestamp='$date_timestamp'";
-    $result = $connection->query($sql);
-    foreach ($result as $row) {
-        $op_num = $row["num"];
     }
 
-    $sql = "insert into test_procedure values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Blood');";
-    $result = $connection->query($sql);
-    /*if(!$result)
-    {
-        $flag=1;
-        $connection->rollback();
-    }*/
+    if($flag==0){
+         $sql = "SELECT O.num FROM operation O
+                WHERE O.name='$animal_name' and O.VAT_owner = $VAT_owner and O.date_timestamp='$date_timestamp'";
+        $result = $connection->query($sql);
+        foreach ($result as $row) {
+            $op_num = $row["num"];
+        }
 
+        $sql = "insert into test_procedure values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Blood');";
+        $result = $connection->query($sql);
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting into test_procedure</p>");
+            $flag=1;
+            $connection->rollback();
+        }
+    }
+    
 
-    $sql = "insert into performed values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
-    $result = $connection->query($sql);
-    /*if(!$result)
-    {
-        $flag=1;
-        $connection->rollback();
-    }*/
+    if($flag==0){
+        $sql = "insert into performed values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
+        $result = $connection->query($sql);
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting into performed</p>");
+            $flag=1;
+            $connection->rollback();
+        }
+    }
 
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'White Cells', :white_cells);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':white_cells', $white_cells, PDO::PARAM_INT);
-    $exec->execute();
-    /*if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }*/
+    if($flag==0){
+        $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'White Cells', :white_cells);";
+        $exec = $connection->prepare($sql);
+        $exec->bindParam(':white_cells', $white_cells, PDO::PARAM_INT);
+        $result = $exec->execute();
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting white cells</p>");
+            $flag=1;
+            $connection->rollback();
+        }
+    }
 
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Lymphocytes', :lymphocytes);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':lymphocytes', $lymphocytes, PDO::PARAM_INT);
-    $exec->execute();
-    /*if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }*/
+    if($flag==0){
+        $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Lymphocytes', :lymphocytes);";
+        $exec = $connection->prepare($sql);
+        $exec->bindParam(':lymphocytes', $lymphocytes, PDO::PARAM_INT);
+        $exec->execute();
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting lymphocytes</p>");
+            $flag=1;
+            $connection->rollback();
+        }
+    }
 
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Neutrophils', :neutrophils);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':neutrophils', $neutrophils, PDO::PARAM_INT);
-    $exec->execute();
-    /*if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }*/
+    if($flag==0){
+        $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Neutrophils', :neutrophils);";
+        $exec = $connection->prepare($sql);
+        $exec->bindParam(':neutrophils', $neutrophils, PDO::PARAM_INT);
+        $exec->execute();
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting neutrophils</p>");
+            $flag=1;
+            $connection->rollback();
+        }
+    }
 
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Monocytes', :monocytes);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':monocytes', $monocytes, PDO::PARAM_INT);
-    $exec->execute();
-    /*if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
+    if($flag==0){
+        $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Monocytes', :monocytes);";
+        $exec = $connection->prepare($sql);
+        $exec->bindParam(':monocytes', $monocytes, PDO::PARAM_INT);
+        $exec->execute();
+        if($result===FALSE)
+        {
+            echo("<p>Error inserting monocytes</p>");
+            $flag=1;
+            $connection->rollback();
+        }
     }
 
     if($flag==0)
     {
         $connection->commit();
-    }*/
-    $connection->commit();
-    echo("<p>New Blood Test Inserted in Databse</p>");
+        echo("<p>New Blood Test Inserted in Databse</p>");
+    }
+    else{
+        echo("<p>Error: Blood Test Not Inserted! Please Try Again! </p>");
+    }
 
     echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
@@ -143,3 +140,4 @@
 </div>
 </body>
 </html>
+
