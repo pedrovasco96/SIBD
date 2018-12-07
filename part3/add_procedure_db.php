@@ -37,7 +37,7 @@
     $result = $connection->query($sql);
     if($result===FALSE)
     {
-        echo("<p>Pila: ");
+        echo("<p>Error inserting into operation: ");
         $flag=1;
         $connection->rollback();
     }
