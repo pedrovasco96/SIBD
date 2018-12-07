@@ -35,16 +35,11 @@
 
     $sql = "insert into operation values ('default','$animal_name', '$VAT_owner', '$date_timestamp', 'Analysis');";
     $result = $connection->query($sql);
-<<<<<<< HEAD
     if($result===FALSE)
-=======
-    if(!$result)
->>>>>>> a21fa774cf3cad59cafb2c37cae1de4bb5e39d3c
     {
         echo("<p>Pila: ");
         $flag=1;
         $connection->rollback();
-<<<<<<< HEAD
     }
 
     if($flag==0){
@@ -54,26 +49,6 @@
         foreach ($result as $row) {
             $op_num = $row["num"];
         }
-=======
-<<<<<<< HEAD
-=======
-    }*/
-    $sql = "SELECT O.num FROM operation O
-            WHERE O.name='$animal_name' and O.VAT_owner = $VAT_owner and O.date_timestamp='$date_timestamp'";
-    $result = $connection->query($sql);
-    foreach ($result as $row) {
-        $op_num = $row["num"];
->>>>>>> add616528ae36763a01d5a6cea952368fbd05b20
-    }
-
-    $sql = "insert into test_procedure values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Blood');";
-    $result = $connection->query($sql);
-    if(!$result)
-    {
-        $flag=1;
-        $connection->rollback();
-    }
->>>>>>> a21fa774cf3cad59cafb2c37cae1de4bb5e39d3c
 
         $sql = "insert into test_procedure values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Blood');";
         $result = $connection->query($sql);
@@ -86,7 +61,6 @@
     }
     
 
-<<<<<<< HEAD
     if($flag==0){
         $sql = "insert into performed values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
         $result = $connection->query($sql);
@@ -148,77 +122,16 @@
             $flag=1;
             $connection->rollback();
         }
-=======
-    $sql = "insert into performed values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', '$VAT_assistant');";
-    $result = $connection->query($sql);
-    if(!$result)
-    {
-        $flag=1;
-        $connection->rollback();
-    }
-
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'White Cells', :white_cells);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':white_cells', $white_cells, PDO::PARAM_INT);
-    $exec->execute();
-    if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }
-
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Lymphocytes', :lymphocytes);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':lymphocytes', $lymphocytes, PDO::PARAM_INT);
-    $exec->execute();
-    if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }
-
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Neutrophils', :neutrophils);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':neutrophils', $neutrophils, PDO::PARAM_INT);
-    $exec->execute();
-    if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
-    }
-
-    $sql = "insert into produced_indicator values ('$op_num','$animal_name', '$VAT_owner', '$date_timestamp', 'Monocytes', :monocytes);";
-    $exec = $connection->prepare($sql);
-    $exec->bindParam(':monocytes', $monocytes, PDO::PARAM_INT);
-    $exec->execute();
-    if(!$exec)
-    {
-        $flag=1;
-        $connection->rollback();
->>>>>>> a21fa774cf3cad59cafb2c37cae1de4bb5e39d3c
     }
 
     if($flag==0)
     {
         $connection->commit();
-<<<<<<< HEAD
         echo("<p>New Blood Test Inserted in Databse</p>");
     }
     else{
         echo("<p>Error: Blood Test Not Inserted! Please Try Again! </p>");
     }
-=======
-<<<<<<< HEAD
-    }
-    echo("produced indicator added \n \n ");
-
-    echo("New Blood Test Inserted in Database \n");
-=======
-    }*/
-    $connection->commit();
-    echo("<p>New Blood Test Inserted in Databse</p>");
->>>>>>> add616528ae36763a01d5a6cea952368fbd05b20
->>>>>>> a21fa774cf3cad59cafb2c37cae1de4bb5e39d3c
 
     echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
