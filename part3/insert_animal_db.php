@@ -16,6 +16,10 @@
     $gender = $_REQUEST['gender'];
     $birth_year = $_REQUEST['birth_year'];
 
+    echo("<p>");
+    echo($species_name);
+    echo("</p>");
+
     include 'credentials.php';
 
     try{

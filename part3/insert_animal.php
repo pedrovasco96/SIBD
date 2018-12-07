@@ -41,7 +41,7 @@
               if($num_a>0){
                   foreach($result as $row)
                   {
-                    echo '<option value='.$row["name1"].'>'.$row["name2"]. ' - ' .$row["name1"].'</option>';
+                    echo '<option value="'.$row["name1"].'">'.$row["name2"]. ' - ' .$row["name1"].'</option>';
                   }
               }
             ?>
