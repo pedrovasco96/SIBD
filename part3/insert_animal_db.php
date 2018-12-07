@@ -37,7 +37,7 @@
     $exec->bindParam(':birth_year', $birth_year);
     $exec->execute();
 
-    echo("New Animal Inserted in Database \n");
+    echo("<p>New Animal Inserted in Database</p>");
     echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
     $connection = null;
