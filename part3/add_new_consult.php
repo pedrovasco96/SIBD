@@ -45,9 +45,10 @@
               $num_a = $result->rowCount();
 
               if($num_a>0){
+                  echo '<option value="0">No diagnosis</option>';
                   foreach($result as $row)
                   {
-                    echo '<option value='.$row["code"].'>'.$row["code"].' - '.$row["name"].'</option>';
+                    echo '<option value='.$row["code"].'>'.$row["name"].'</option>';
                   }
               }
             ?>

@@ -57,7 +57,7 @@
     $exec->bindParam(':weight', $weight, PDO::PARAM_INT);
     $exec->execute();
 
-    if($code){
+    if($code > '0'){
       $sql = "insert into consult_diagnosis values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
       $exec = $connection->prepare($sql);
       $exec->bindParam(':code', $code, PDO::PARAM_INT);
