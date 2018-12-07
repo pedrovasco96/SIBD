@@ -23,7 +23,7 @@
       <p> A: <input type="text" name="a" placeholder="Assessment..."></p>
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
       <p> Weight: <input type="number" min="0" name="weight" placeholder="Weight (Kg)..." required></p>
-      <p> Diagnosis Code: <br>
+      <p> Diagnosis Code (Hold Ctrl to select): <br>
       <select multiple name="code[]">
           <?php
               include 'credentials.php';
@@ -45,7 +45,6 @@
               $num_a = $result->rowCount();
 
               if($num_a>0){
-                  echo '<option value="0">No diagnosis</option>';
                   foreach($result as $row)
                   {
                     echo '<option value='.$row["code"].'>'.$row["code"].' - '.$row["name"].'</option>';
