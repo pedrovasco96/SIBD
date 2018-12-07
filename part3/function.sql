@@ -11,8 +11,9 @@ create function total_consults(v_owner int, a_name varchar(255), year int)
   end
 //
 
--- Call:
-
--- delimiter //
--- select total_consults(v_owner, 'a_name', year);
--- //
+-- example call:
+/*
+delimiter //
+select total_consults(5938, 'Nel', 2017);
+//
+*/
