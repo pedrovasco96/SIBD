@@ -58,13 +58,13 @@
     $exec->execute();
 
     if($code){
-      $sql = "insert into consult values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
+      $sql = "insert into consult_diagnosis values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
       $exec = $connection->prepare($sql);
       $exec->bindParam(':code', $code);
       $exec->execute();
     }
 
-    echo("<p>New Consult Inserted in Databse</p>");
+    echo("<p>New Consult Inserted in Database</p>");
 
     echo("<button class='button' onclick=document.location.href=\"ini.html?flag=1\">Back to Initial Page</button>");
 
