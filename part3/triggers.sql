@@ -10,8 +10,8 @@ set new_age = year(CURRENT_TIMESTAMP) - (select a.birth_year from animal a
 update animal
 set animal.age = new_age
 where animal.VAT_owner = NEW.VAT_owner and animal.name = NEW.name;
-end
-//
+end//
+delimiter ;
 
 -- 2 - check if veterinary/assistant already is an assistant/veterinary
 delimiter //
@@ -26,6 +26,7 @@ IF vets <> 0 THEN
 END IF;
 end
 //
+delimiter ;
 
 delimiter //
 drop trigger if exists check_assistant;
@@ -39,6 +40,7 @@ SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'New veterinary is already an assista
 END IF;
 end
 //
+delimiter ;
 
 -- 3 - Check if no individuals have the same phone number
 delimiter //
@@ -53,3 +55,4 @@ SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'This phone number already exists!';
 END IF;
 end
 //
+delimiter ;

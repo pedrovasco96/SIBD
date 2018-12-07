@@ -10,10 +10,9 @@ create function total_consults(v_owner int, a_name varchar(255), year int)
     return total;
   end
 //
+delimiter ;
 
 -- example call:
 /*
-delimiter //
 select total_consults(5938, 'Nel', 2017);
-//
 */

@@ -11,7 +11,7 @@ begin
   update indicator
     set units = 'centigrams', reference_value = reference_value/10
     where indicator.units='milligrams';
-  end
-  //
+end//
+delimiter ;
 
--- Call - call cange_refs();//
+-- Call - call change_refs();
