@@ -60,7 +60,7 @@
     if($code){
       $sql = "insert into consult_diagnosis values (:code, '$animal_name', '$VAT_owner', '$date_timestamp');";
       $exec = $connection->prepare($sql);
-      $exec->bindParam(':code', $code);
+      $exec->bindParam(':code', $code, PDO::PARAM_INT);
       $exec->execute();
     }
 

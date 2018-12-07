@@ -23,7 +23,35 @@
       <p> A: <input type="text" name="a" placeholder="Assessment..."></p>
       <p> P: <input type="text" name="p" placeholder="Plan..."></p>
       <p> Weight: <input type="number" min="0" name="weight" placeholder="Weight (Kg)..." required></p>
-      <p> Diagnosis Code: <input type="number" min="0" name="code" placeholder="Diagnosis Code..."></p>
+      <p> Diagnosis Code:
+      <select name="code">
+          <?php
+              include 'credentials.php';
+
+              try{
+                $connection = new PDO($dsn, $user, $pass);
+              }
+              catch(PDOException $exception){
+                echo("<p>Error: ");
+                echo($exception->getMessage());
+                echo("</p>");
+                exit();
+              }
+              $sql = "SELECT D.name, D.code
+                      FROM diagnosis_code D;";
+
+              $result = $connection->query($sql);
+
+              $num_a = $result->rowCount();
+
+              if($num_a>0){
+                  foreach($result as $row)
+                  {
+                    echo '<option value='.$row["code"].'>'.$row["code"].' - '.$row["name"].'</option>';
+                  }
+              }
+            ?>
+      </select></p>
       <p> Veterinary's VAT:
       <select name="VAT_vet">
           <?php
