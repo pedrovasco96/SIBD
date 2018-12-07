@@ -31,8 +31,8 @@
       $exec->execute();
       $num_client = $exec->rowCount();
 
-      echo("<p>Clients found:</p>\n");
       if ($num_client > 0){
+          echo("<p>Clients found:</p>\n");
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT</th><th>Name</th><th>City</th><th>Street</th><th>ZIP</th></tr>\n");
           foreach($exec as $row)
@@ -63,9 +63,8 @@
       $exec->execute();
       $num_animal = $exec->rowCount();
 
-      echo("<p>Animals found:</p>\n");
-
       if($num_animal>0){
+          echo("<p>Animals found:</p>\n");
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT Owner</th><th>Name</th><th>Species Name</th><th>Colour</th><th>Gender</th><th>Birth Year</th><th>Age</th></tr>\n");
           foreach($exec as $row)
@@ -91,6 +90,7 @@
           echo("</table>\n");
       }
 
+      //check if client already owns an animal with the name provided
       $sql = "SELECT *  FROM animal A, person P
                         WHERE P.VAT=A.VAT_owner AND P.VAT= :vat_client AND A.name= :animal_name;";
       $exec = $connection->prepare($sql);
@@ -99,13 +99,13 @@
       $exec->execute();
       $num_animal_client = $exec->rowCount();
 
-      if ($num_animal <= 0){
-        if($num_animal_client >= 0){
+      if ($num_animal <= 0 && $num_client > 0){
+        if($num_animal_client > 0){
           echo("<p> There is already one animal registered with the name ");
           echo($animal_name);
           echo(" for the client ");
           echo($VAT_client);
-          echo(". Try inserting the name above in the field 'Owner's name. </p>");
+          echo(". Try inserting the name above in the field 'Owner's name'. </p>");
         }
       }
 
@@ -121,9 +121,8 @@
       $exec->execute();
       $num_consult = $exec->rowCount();
 
-      echo("<p>Consults associated with this animal and this client:</p>\n");
-
       if($num_consult>0){
+          echo("<p>Consults associated with this animal and this client:</p>\n");
           echo("<table border=\"1\">\n");
           echo("<tr><th>VAT Owner</th><th>Owner name</th><th>Date/Time</th><th>s</th><th>o</th><th>a</th><th>p</th><th>VAT Client</th><th>VAT Vet</th><th>weight</th></tr>\n");
 		  foreach($exec as $row)
@@ -153,12 +152,30 @@
           echo("</table>\n");
       }
 
+      //check if person added as client already exists in the database
+      if($num_client <= 0){
+        $query = "SELECT * FROM person P WHERE P.VAT= :vat_client;";
+        $exec = $connection->prepare($query);
+        $exec->bindParam(':vat_client', $VAT_client, PDO::PARAM_INT);
+        $exec->execute();
+        $exists = $exec->rowCount();
+      }
+
       $connection = null;
 
       if($num_animal_client <= 0 && $num_client > 0){
 
           echo("<button class='button' onclick=document.location.href=\"insert_animal.php?flag=1\">Insert Animal</button>");
       }
+
+      $vat_string = (string) $VAT_client;
+      if($num_client <= 0 && strlen($vat_string) == 4){
+          if($exists <= 0)
+            echo("<button class='button' onclick=document.location.href=\"insert_client.php?flag=1\">Insert Client</button>");
+          else
+            echo("<button class='button' onclick=document.location.href=\"insert_client_exist.php?flag=1\">Insert Client</button>");
+      }elseif(strlen($vat_string) != 4)
+        echo("<p> Seems like you misstyped. Client VAT should have 4 numbers (e.g. 1001). </p>");
 
       session_start();
       $_SESSION['VAT_client'] = $VAT_client;
