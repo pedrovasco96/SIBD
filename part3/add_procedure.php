@@ -47,10 +47,10 @@
               }
             ?>
       </select></p>
-      <p> White Blood Cells Count:<br> <input type="number" min="0" name="white_cells" required></p>
-      <p> Number of Lymphocytes:<br> <input type="number" min="0" name="lymphocytes" required></p>
-      <p> Number of Neutrophils:<br> <input type="number" min="0" name="neutrophils" required></p>
-      <p> Number of Monocytes:<br> <input type="number" min="0" name="monocytes" required></p>
+      <p> White Blood Cells Count:<br> <input type="text" name="white_cells"></p>
+      <p> Number of Lymphocytes:<br> <input type="text" name="lymphocytes"></p>
+      <p> Number of Neutrophils:<br> <input type="text" name="neutrophils"></p>
+      <p> Number of Monocytes:<br> <input type="text" name="monocytes"></p>
       <input class='button' type="submit">
   </form>
   <?php
